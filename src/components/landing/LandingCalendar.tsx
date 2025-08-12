@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Clock, MapPin, User, Calendar as CalendarIcon } from 'lucide-react';
+import { UserRole } from '../../types/auth';
 
-const LandingCalendar: React.FC = () => {
+interface LandingCalendarProps {
+  userRole?: UserRole;
+}
+
+const LandingCalendar: React.FC<LandingCalendarProps> = ({ userRole }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [viewMode, setViewMode] = useState<'day' | 'month'>('day');
+
+  if (!userRole || userRole === 'superadmin') return null;
 
   const appointments = [
     {

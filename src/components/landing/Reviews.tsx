@@ -1,7 +1,14 @@
 import React from 'react';
 import { Star, Quote, User, Calendar, TrendingUp, Award, Heart, Sparkles } from 'lucide-react';
+import { UserRole } from '../../types/auth';
 
-const Reviews: React.FC = () => {
+interface ReviewsProps {
+  userRole?: UserRole;
+}
+
+const Reviews: React.FC<ReviewsProps> = ({ userRole }) => {
+  if (!userRole || userRole === 'superadmin') return null;
+
   const reviews = [
     {
       id: 1,

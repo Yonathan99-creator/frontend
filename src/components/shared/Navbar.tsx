@@ -14,32 +14,80 @@ import {
   X
 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import { useApp } from '../contexts/AppContext';
+import { useApp } from '../../contexts/AppContext';
+import { useAuth } from '../../contexts/auth/AuthContext';
+import { UserRole } from '../../types/auth';
 
 interface NavbarProps {
   onLogoClick?: () => void;
   showBackToLanding?: boolean;
+  userRole?: UserRole;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onLogoClick, showBackToLanding = false }) => {
+const Navbar: React.FC<NavbarProps> = ({ onLogoClick, showBackToLanding = false, userRole }) => {
   const { theme, toggleTheme } = useTheme();
-  const { currentModule, setCurrentModule } = useApp();
+  const { logout, user } = useAuth();
+  const appContext = useApp();
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const modules = [
-    { name: 'My Profile', icon: User },
-    { name: 'My Services', icon: Settings },
-    { name: 'My Calendar', icon: Calendar },
-    { name: 'My Appointments', icon: Clock },
-    { name: 'My Reviews', icon: Star },
-    { name: 'My Subscription', icon: CreditCard }
-  ];
+  // Get modules based on user role
+  const getModulesForRole = (role?: UserRole) => {
+    switch (role) {
+      case 'professional':
+        return [
+          { name: 'My Profile', icon: User },
+          { name: 'My Services', icon: Settings },
+          { name: 'My Calendar', icon: Calendar },
+          { name: 'My Appointments', icon: Clock },
+          { name: 'My Reviews', icon: Star },
+          { name: 'My Subscription', icon: CreditCard }
+        ];
+      case 'client':
+        return [
+          { name: 'Book Service', icon: Calendar },
+          { name: 'My Appointments', icon: Clock },
+          { name: 'My Profile', icon: User },
+          { name: 'Reviews', icon: Star }
+        ];
+      case 'superadmin':
+        return [
+          { name: 'Overview', icon: TrendingUp },
+          { name: 'User Management', icon: Users },
+          { name: 'Analytics', icon: BarChart3 },
+          { name: 'System Settings', icon: Settings }
+        ];
+      default:
+        return [];
+    }
+  };
+
+  const modules = getModulesForRole(userRole);
+  const currentModule = appContext?.currentModule;
+  const setCurrentModule = appContext?.setCurrentModule;
 
   const handleModuleChange = (moduleName: string) => {
-    setCurrentModule(moduleName);
+    setCurrentModule?.(moduleName);
     setIsMobileMenuOpen(false);
   };
+
+  const handleLogout = () => {
+    logout();
+    setIsProfileMenuOpen(false);
+  };
+
+  const getUserDisplayInfo = () => {
+    if (!user) return { initials: 'U', name: 'User', role: 'Guest' };
+    
+    const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase();
+    return {
+      initials,
+      name: user.name,
+      role: user.role.charAt(0).toUpperCase() + user.role.slice(1)
+    };
+  };
+
+  const userInfo = getUserDisplayInfo();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 transition-all duration-300">
@@ -108,8 +156,8 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick, showBackToLanding = false 
                   <span className="text-white text-sm font-medium">JP</span>
                 </div>
                 <div className="hidden sm:block text-left">
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">John Professional</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Hair Stylist</p>
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">{userInfo.name}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{userInfo.role}</p>
                 </div>
                 <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${isProfileMenuOpen ? 'rotate-180' : ''}`} />
               </button>
@@ -120,11 +168,11 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick, showBackToLanding = false 
                   <div className="p-4 border-b border-gray-200 dark:border-gray-700">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-                        <span className="text-white font-medium">JP</span>
+                        <span className="text-white font-medium">{userInfo.initials}</span>
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900 dark:text-white">John Professional</p>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">john@probooking.com</p>
+                        <p className="font-medium text-gray-900 dark:text-white">{userInfo.name}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">{user?.email}</p>
                       </div>
                     </div>
                   </div>
@@ -139,9 +187,12 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick, showBackToLanding = false 
                       <User className="w-4 h-4" />
                       <span>Profile</span>
                     </button>
-                    <button className="flex items-center space-x-3 w-full px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200">
+                    <button 
+                      onClick={handleLogout}
+                      className="flex items-center space-x-3 w-full px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200"
+                    >
                       <LogOut className="w-4 h-4" />
-                      <span>Close Session</span>
+                      <span>Logout</span>
                     </button>
                   </div>
                 </div>

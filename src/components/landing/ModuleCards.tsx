@@ -1,77 +1,169 @@
 import React from 'react';
-import { User, Settings, Calendar, Clock, Star, CreditCard, ArrowRight, Sparkles, TrendingUp, Shield } from 'lucide-react';
+import { User, Settings, Calendar, Clock, Star, CreditCard, ArrowRight, Sparkles, TrendingUp, Shield, BarChart3 } from 'lucide-react';
 import { useApp } from '../../contexts/AppContext';
+import { UserRole } from '../../types/auth';
 
 interface ModuleCardsProps {
   onModuleClick?: (moduleName: string) => void;
+  userRole?: UserRole;
 }
 
-const ModuleCards: React.FC<ModuleCardsProps> = ({ onModuleClick }) => {
-  const { setCurrentModule } = useApp();
+const ModuleCards: React.FC<ModuleCardsProps> = ({ onModuleClick, userRole }) => {
+  const appContext = useApp();
+  const setCurrentModule = appContext?.setCurrentModule;
 
-  const modules = [
-    {
-      icon: User,
-      title: 'Mi Perfil',
-      moduleName: 'My Profile',
-      description: 'Gestiona tu información personal y profesional',
-      color: 'from-blue-500 to-cyan-600',
-      bgColor: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20',
-      features: ['Información personal', 'Certificaciones', 'Horarios de trabajo']
-    },
-    {
-      icon: Settings,
-      title: 'Mis Servicios',
-      moduleName: 'My Services',
-      description: 'Administra tus servicios y precios',
-      color: 'from-purple-500 to-pink-600',
-      bgColor: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20',
-      features: ['Catálogo de servicios', 'Precios dinámicos', 'Categorización']
-    },
-    {
-      icon: Calendar,
-      title: 'Mi Calendario',
-      moduleName: 'My Calendar',
-      description: 'Visualiza y organiza tu agenda',
-      color: 'from-green-500 to-emerald-600',
-      bgColor: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20',
-      features: ['Vista mensual/semanal', 'Sincronización', 'Recordatorios']
-    },
-    {
-      icon: Clock,
-      title: 'Mis Citas',
-      moduleName: 'My Appointments',
-      description: 'Gestiona todas tus citas y clientes',
-      color: 'from-orange-500 to-red-600',
-      bgColor: 'from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20',
-      features: ['Gestión completa', 'Estados de citas', 'Historial detallado']
-    },
-    {
-      icon: Star,
-      title: 'Mis Reseñas',
-      moduleName: 'My Reviews',
-      description: 'Monitorea la satisfacción de tus clientes',
-      color: 'from-yellow-500 to-orange-600',
-      bgColor: 'from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20',
-      features: ['Calificaciones', 'Comentarios', 'Análisis de tendencias']
-    },
-    {
-      icon: CreditCard,
-      title: 'Mi Suscripción',
-      moduleName: 'My Subscription',
-      description: 'Administra tu plan y facturación',
-      color: 'from-indigo-500 to-purple-600',
-      bgColor: 'from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20',
-      features: ['Planes flexibles', 'Facturación', 'Soporte premium']
+  const getModulesForRole = (role?: UserRole) => {
+    switch (role) {
+      case 'professional':
+        return [
+          {
+            icon: User,
+            title: 'Mi Perfil',
+            moduleName: 'My Profile',
+            description: 'Gestiona tu información personal y profesional',
+            color: 'from-blue-500 to-cyan-600',
+            bgColor: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20',
+            features: ['Información personal', 'Certificaciones', 'Horarios de trabajo']
+          },
+          {
+            icon: Settings,
+            title: 'Mis Servicios',
+            moduleName: 'My Services',
+            description: 'Administra tus servicios y precios',
+            color: 'from-purple-500 to-pink-600',
+            bgColor: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20',
+            features: ['Catálogo de servicios', 'Precios dinámicos', 'Categorización']
+          },
+          {
+            icon: Calendar,
+            title: 'Mi Calendario',
+            moduleName: 'My Calendar',
+            description: 'Visualiza y organiza tu agenda',
+            color: 'from-green-500 to-emerald-600',
+            bgColor: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20',
+            features: ['Vista mensual/semanal', 'Sincronización', 'Recordatorios']
+          },
+          {
+            icon: Clock,
+            title: 'Mis Citas',
+            moduleName: 'My Appointments',
+            description: 'Gestiona todas tus citas y clientes',
+            color: 'from-orange-500 to-red-600',
+            bgColor: 'from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20',
+            features: ['Gestión completa', 'Estados de citas', 'Historial detallado']
+          },
+          {
+            icon: Star,
+            title: 'Mis Reseñas',
+            moduleName: 'My Reviews',
+            description: 'Monitorea la satisfacción de tus clientes',
+            color: 'from-yellow-500 to-orange-600',
+            bgColor: 'from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20',
+            features: ['Calificaciones', 'Comentarios', 'Análisis de tendencias']
+          },
+          {
+            icon: CreditCard,
+            title: 'Mi Suscripción',
+            moduleName: 'My Subscription',
+            description: 'Administra tu plan y facturación',
+            color: 'from-indigo-500 to-purple-600',
+            bgColor: 'from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20',
+            features: ['Planes flexibles', 'Facturación', 'Soporte premium']
+          }
+        ];
+      case 'client':
+        return [
+          {
+            icon: Calendar,
+            title: 'Reservar Cita',
+            moduleName: 'Book Service',
+            description: 'Encuentra y reserva servicios profesionales',
+            color: 'from-green-500 to-emerald-600',
+            bgColor: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20',
+            features: ['Búsqueda avanzada', 'Disponibilidad en tiempo real', 'Confirmación instantánea']
+          },
+          {
+            icon: Clock,
+            title: 'Mis Citas',
+            moduleName: 'My Appointments',
+            description: 'Gestiona tus citas programadas',
+            color: 'from-blue-500 to-cyan-600',
+            bgColor: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20',
+            features: ['Próximas citas', 'Historial', 'Recordatorios']
+          },
+          {
+            icon: Star,
+            title: 'Mis Reseñas',
+            moduleName: 'Reviews',
+            description: 'Comparte tu experiencia',
+            color: 'from-yellow-500 to-orange-600',
+            bgColor: 'from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20',
+            features: ['Calificar servicios', 'Escribir reseñas', 'Ver historial']
+          },
+          {
+            icon: User,
+            title: 'Mi Perfil',
+            moduleName: 'My Profile',
+            description: 'Administra tu información personal',
+            color: 'from-purple-500 to-pink-600',
+            bgColor: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20',
+            features: ['Datos personales', 'Preferencias', 'Configuración']
+          }
+        ];
+      case 'superadmin':
+        return [
+          {
+            icon: TrendingUp,
+            title: 'Dashboard General',
+            moduleName: 'Overview',
+            description: 'Vista general del sistema',
+            color: 'from-blue-500 to-cyan-600',
+            bgColor: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20',
+            features: ['Métricas clave', 'Estado del sistema', 'Alertas']
+          },
+          {
+            icon: User,
+            title: 'Gestión de Usuarios',
+            moduleName: 'User Management',
+            description: 'Administra usuarios y permisos',
+            color: 'from-green-500 to-emerald-600',
+            bgColor: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20',
+            features: ['Usuarios activos', 'Roles y permisos', 'Moderación']
+          },
+          {
+            icon: BarChart3,
+            title: 'Analíticas',
+            moduleName: 'Analytics',
+            description: 'Reportes y análisis detallados',
+            color: 'from-purple-500 to-pink-600',
+            bgColor: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20',
+            features: ['Reportes avanzados', 'Tendencias', 'Exportación']
+          },
+          {
+            icon: Settings,
+            title: 'Configuración',
+            moduleName: 'System Settings',
+            description: 'Configuración del sistema',
+            color: 'from-orange-500 to-red-600',
+            bgColor: 'from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20',
+            features: ['Parámetros globales', 'Integraciones', 'Mantenimiento']
+          }
+        ];
+      default:
+        return [];
     }
-  ];
+  };
+
+  const modules = getModulesForRole(userRole);
 
   const handleModuleClick = (module: typeof modules[0]) => {
     if (onModuleClick) {
-      setCurrentModule(module.moduleName);
+      setCurrentModule?.(module.moduleName);
       onModuleClick(module.moduleName);
     }
   };
+
+  if (!userRole) return null;
 
   return (
     <section id="modules" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
