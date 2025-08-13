@@ -57,6 +57,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (savedUser) {
       try {
         const userData = JSON.parse(savedUser);
+        // Re-hydrate Date objects from localStorage
+        if (userData.createdAt) {
+          userData.createdAt = new Date(userData.createdAt);
+        }
+        if (userData.lastLogin) {
+          userData.lastLogin = new Date(userData.lastLogin);
+        }
         setUser(userData);
         setIsAuthenticated(true);
       } catch (error) {
