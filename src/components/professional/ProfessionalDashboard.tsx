@@ -28,6 +28,7 @@ const ProfessionalDashboardContent: React.FC = () => {
   if (isLoading) {
     return <ProfessionalLoadingScreen />;
       <LoadingScreen />
+  }
 
   const handleEnterDashboard = (moduleName?: string) => {
     setShowLanding(false);
