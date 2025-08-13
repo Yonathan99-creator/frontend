@@ -75,7 +75,7 @@ const CalendarView: React.FC = () => {
 
   const quickStats = [
     { label: 'Today', value: todayAppointments.toString(), icon: Clock, color: 'from-blue-500 to-cyan-600' },
-    { label: 'This Week', value: thisWeekAppointments.toString(), icon: Calendar, color: 'from-green-500 to-emerald-600' },
+    { label: 'This Week', value: thisWeekAppointments.toString(), icon: CalendarIcon, color: 'from-green-500 to-emerald-600' },
     { label: 'Total', value: appointments.length.toString(), icon: BarChart3, color: 'from-purple-500 to-pink-600' },
     { label: 'Rating', value: '4.9', icon: Star, color: 'from-yellow-500 to-orange-600' }
   ];
