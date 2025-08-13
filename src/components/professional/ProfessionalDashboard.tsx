@@ -26,8 +26,7 @@ const ProfessionalDashboardContent: React.FC = () => {
   }, []);
 
   if (isLoading) {
-    return <ProfessionalLoadingScreen />;
-      <LoadingScreen />
+    return <LoadingScreen />;
   }
 
   const handleEnterDashboard = (moduleName?: string) => {
