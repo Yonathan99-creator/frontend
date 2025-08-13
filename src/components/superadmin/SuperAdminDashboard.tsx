@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Shield, Users, BarChart3, Settings, TrendingUp, Activity, Clock, Award, Crown, Trophy, Medal, Flame, Sparkles, Zap, Target, Heart, Star, Eye, Bookmark, CheckCircle, AlertCircle, XCircle, Calendar, DollarSign, UserCheck, UserX, Database, Server, Globe, Lock } from 'lucide-react';
 import { useAuth } from '../../contexts/auth/AuthContext';
 import { AppProvider } from '../../contexts/AppContext';
-import { ProfessionalLoadingScreen } from '../shared';
+import { LoadingScreen } from '../shared';
 
 const SuperAdminDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -20,7 +20,7 @@ const SuperAdminDashboard: React.FC = () => {
 
   if (isLoading) {
     return (
-      <ProfessionalLoadingScreen />
+      <LoadingScreen />
     );
   }
 
