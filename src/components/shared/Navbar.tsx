@@ -13,7 +13,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import { useApp } from '../../contexts/AppContext';
 import { useAuth } from '../../contexts/auth/AuthContext';
 import { UserRole } from '../../types/auth';
