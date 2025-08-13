@@ -2,11 +2,32 @@ import React, { useState } from 'react';
 import { Calendar, User, Star, Clock, MapPin, Phone, Mail, Search, Filter, Bell, Settings, Heart, Bookmark, TrendingUp, Award, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Gift, Rocket, Diamond, CheckCircle, Eye, Share2 } from 'lucide-react';
 import { useAuth } from '../../contexts/auth/AuthContext';
 import { AppProvider } from '../../contexts/AppContext';
+import LoadingScreen from '../shared/LoadingScreen';
 import Navbar from '../shared/Navbar';
 
 const ClientDashboard: React.FC = () => {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('appointments');
+  const [isLoading, setIsLoading] = useState(true);
+
+  React.useEffect(() => {
+    // Simulate loading time for client dashboard
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <LoadingScreen 
+        title="ProBooking Client"
+        subtitle="Preparando tu área de cliente..."
+        showProgress={true}
+      />
+    );
+  }
 
   const tabs = [
     { id: 'appointments', label: 'My Appointments', icon: Calendar, color: 'from-blue-500 to-cyan-600' },

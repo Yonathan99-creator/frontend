@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from '../../contexts/ThemeContext';
 import { AppProvider, useApp } from '../../contexts/AppContext';
+import { ProfessionalLoadingScreen } from './loading';
 import Navbar from '../shared/Navbar';
 import LandingPage from '../shared/LandingPage';
 import CalendarView from './calendar/CalendarView';
@@ -13,6 +14,20 @@ import MySubscription from './subscription/MySubscription';
 const ProfessionalDashboardContent: React.FC = () => {
   const { currentModule } = useApp();
   const [showLanding, setShowLanding] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    // Simulate loading time for professional dashboard
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <ProfessionalLoadingScreen />;
+  }
 
   const handleEnterDashboard = (moduleName?: string) => {
     setShowLanding(false);

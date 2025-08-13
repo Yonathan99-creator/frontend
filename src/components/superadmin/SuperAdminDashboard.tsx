@@ -2,11 +2,32 @@ import React, { useState } from 'react';
 import { Shield, Users, BarChart3, Settings, TrendingUp, Activity, Clock, Award, Crown, Trophy, Medal, Flame, Sparkles, Zap, Target, Heart, Star, Eye, Bookmark, CheckCircle, AlertCircle, XCircle, Calendar, DollarSign, UserCheck, UserX, Database, Server, Globe, Lock } from 'lucide-react';
 import { useAuth } from '../../contexts/auth/AuthContext';
 import { AppProvider } from '../../contexts/AppContext';
+import LoadingScreen from '../shared/LoadingScreen';
 import Navbar from '../shared/Navbar';
 
 const SuperAdminDashboard: React.FC = () => {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('overview');
+  const [isLoading, setIsLoading] = useState(true);
+
+  React.useEffect(() => {
+    // Simulate loading time for super admin dashboard
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <LoadingScreen 
+        title="ProBooking Admin"
+        subtitle="Cargando panel de administración..."
+        showProgress={true}
+      />
+    );
+  }
 
   const tabs = [
     { id: 'overview', label: 'Overview', icon: BarChart3, color: 'from-blue-500 to-cyan-600' },

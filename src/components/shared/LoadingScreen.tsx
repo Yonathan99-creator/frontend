@@ -1,7 +1,17 @@
 import React from 'react';
 import { Calendar, Sparkles } from 'lucide-react';
 
-const LoadingScreen: React.FC = () => {
+interface LoadingScreenProps {
+  title?: string;
+  subtitle?: string;
+  showProgress?: boolean;
+}
+
+const LoadingScreen: React.FC<LoadingScreenProps> = ({ 
+  title = "ProBooking",
+  subtitle = "Cargando tu espacio...",
+  showProgress = true
+}) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center transition-colors duration-300 pt-16">
       <div className="text-center">
@@ -16,8 +26,8 @@ const LoadingScreen: React.FC = () => {
         </div>
 
         {/* Brand */}
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4">
-          ProBooking
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4 animate-in slide-in-from-bottom-4 duration-1000">
+          {title}
         </h1>
 
         {/* Loading Animation */}
@@ -36,20 +46,21 @@ const LoadingScreen: React.FC = () => {
         </div>
 
         {/* Loading Text */}
-        <p className="text-2xl text-gray-600 dark:text-gray-300 font-bold animate-pulse mb-4 bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
-          Cargando tu espacio profesional...
+        <p className="text-2xl text-gray-600 dark:text-gray-300 font-bold animate-pulse mb-4 bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent animate-in slide-in-from-bottom-4 duration-1000 delay-200">
+          {subtitle}
         </p>
         
-        <p className="text-base text-gray-500 dark:text-gray-400 font-medium">
-          Preparando la mejor experiencia para gestionar tu negocio
+        <p className="text-base text-gray-500 dark:text-gray-400 font-medium animate-in slide-in-from-bottom-4 duration-1000 delay-300">
+          Preparando la mejor experiencia para ti
         </p>
 
         {/* Progress Indicators */}
-        <div className="mt-12 space-y-4">
+        {showProgress && (
+        <div className="mt-12 space-y-4 animate-in slide-in-from-bottom-4 duration-1000 delay-400">
           <div className="flex justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
             <span className="flex items-center space-x-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full backdrop-blur-sm">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-lg"></div>
-              <span className="font-medium">Cargando módulos</span>
+              <span className="font-medium">Inicializando</span>
             </span>
             <span className="flex items-center space-x-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full backdrop-blur-sm">
               <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse shadow-lg" style={{ animationDelay: '0.5s' }}></div>
@@ -57,31 +68,16 @@ const LoadingScreen: React.FC = () => {
             </span>
             <span className="flex items-center space-x-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full backdrop-blur-sm">
               <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse shadow-lg" style={{ animationDelay: '1s' }}></div>
-              <span className="font-medium">Preparando interfaz</span>
+              <span className="font-medium">Finalizando</span>
             </span>
           </div>
           
           {/* Progress Bar */}
-          <div className="w-96 mx-auto bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+          <div className="w-96 mx-auto bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden shadow-inner">
             <div className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full animate-pulse shadow-lg"></div>
           </div>
         </div>
+        )}
       </div>
 
       {/* Background Animation */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-500/10 rounded-full animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/10 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-indigo-500/5 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-        
-        {/* Floating particles */}
-        <div className="absolute top-20 left-20 w-4 h-4 bg-blue-400/30 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
-        <div className="absolute top-40 right-32 w-3 h-3 bg-purple-400/30 rounded-full animate-bounce" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute bottom-32 left-32 w-5 h-5 bg-pink-400/30 rounded-full animate-bounce" style={{ animationDelay: '2.5s' }}></div>
-        <div className="absolute bottom-20 right-20 w-2 h-2 bg-indigo-400/30 rounded-full animate-bounce" style={{ animationDelay: '3s' }}></div>
-      </div>
-    </div>
-  );
-};
-
-export default LoadingScreen;
