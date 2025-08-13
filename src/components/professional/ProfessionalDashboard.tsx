@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from '../../contexts/ThemeContext';
 import { AppProvider, useApp } from '../../contexts/AppContext';
-import { ProfessionalLoadingScreen } from './loading';
+import { ProfessionalLoadingScreen } from '../shared';
 import ProfessionalNavbar from './shared/ProfessionalNavbar';
 import ProfessionalLandingPage from './shared/ProfessionalLandingPage';
 import CalendarView from './calendar/CalendarView';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Shield, Users, BarChart3, Settings, TrendingUp, Activity, Clock, Award, Crown, Trophy, Medal, Flame, Sparkles, Zap, Target, Heart, Star, Eye, Bookmark, CheckCircle, AlertCircle, XCircle, Calendar, DollarSign, UserCheck, UserX, Database, Server, Globe, Lock } from 'lucide-react';
 import { useAuth } from '../../contexts/auth/AuthContext';
 import { AppProvider } from '../../contexts/AppContext';
-import LoadingScreen from '../shared/LoadingScreen';
+import { ProfessionalLoadingScreen } from '../shared';
 
 const SuperAdminDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -20,11 +20,7 @@ const SuperAdminDashboard: React.FC = () => {
 
   if (isLoading) {
     return (
-      <LoadingScreen 
-        title="ProBooking Admin"
-        subtitle="Cargando panel de administración..."
-        showProgress={true}
-      />
+      <ProfessionalLoadingScreen />
     );
   }
 
