@@ -3,7 +3,6 @@ import { Calendar, User, Star, Clock, MapPin, Phone, Mail, Search, Filter, Bell,
 import { useAuth } from '../../contexts/auth/AuthContext';
 import { AppProvider } from '../../contexts/AppContext';
 import LoadingScreen from '../shared/LoadingScreen';
-import { Calendar, User, Star, Clock, MapPin, Phone, Mail, Search, Filter, Bell, Settings, Heart, Bookmark, TrendingUp, Award, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Gift, Rocket, Diamond, CheckCircle, Eye, Share2 } from 'lucide-react';
 
 const ClientDashboard: React.FC = () => {
   const { user } = useAuth();
