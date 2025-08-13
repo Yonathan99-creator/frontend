@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, User, Star, Clock, MapPin, Phone, Mail, Search, Filter, Bell, Settings, Heart, Bookmark, TrendingUp, Award, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Gift, Rocket, Diamond, CheckCircle, Eye, Share2 } from 'lucide-react';
 import { useAuth } from '../../contexts/auth/AuthContext';
+import { AppProvider } from '../../contexts/AppContext';
 import Navbar from '../shared/Navbar';
 
 const ClientDashboard: React.FC = () => {
@@ -315,60 +316,62 @@ const ClientDashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
-      <Navbar userRole="client" />
-      
-      <div className="pt-20 pb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="mb-8 animate-in slide-in-from-top-4 duration-1000">
-            <div className="flex items-center space-x-4 mb-4">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 hover:rotate-12 group">
-                <Calendar className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" />
-              </div>
-              <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                  Welcome back, {user?.name?.split(' ')[0]}!
-                </h1>
-                <p className="text-xl text-gray-600 dark:text-gray-400 mt-2">
-                  Manage your appointments and discover new services
-                </p>
+    <AppProvider>
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+        <Navbar userRole="client" />
+        
+        <div className="pt-20 pb-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Header */}
+            <div className="mb-8 animate-in slide-in-from-top-4 duration-1000">
+              <div className="flex items-center space-x-4 mb-4">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 hover:rotate-12 group">
+                  <Calendar className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <div>
+                  <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                    Welcome back, {user?.name?.split(' ')[0]}!
+                  </h1>
+                  <p className="text-xl text-gray-600 dark:text-gray-400 mt-2">
+                    Manage your appointments and discover new services
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Navigation Tabs */}
-          <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-2 mb-8 hover:shadow-3xl transition-all duration-500 animate-in slide-in-from-bottom-4 duration-1000 delay-200">
-            <div className="flex flex-wrap gap-2">
-              {tabs.map((tab, index) => {
-                const Icon = tab.icon;
-                const isActive = activeTab === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center space-x-3 px-8 py-4 rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 group relative overflow-hidden ${
-                      isActive
-                        ? `bg-gradient-to-r ${tab.color} text-white shadow-lg`
-                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                    } animate-in slide-in-from-bottom-4 duration-1000`}
-                    style={{ animationDelay: `${index * 100 + 300}ms` }}
-                  >
-                    <Icon className="w-6 h-6" />
-                    <span className="font-bold">{tab.label}</span>
-                  </button>
-                );
-              })}
+            {/* Navigation Tabs */}
+            <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-2 mb-8 hover:shadow-3xl transition-all duration-500 animate-in slide-in-from-bottom-4 duration-1000 delay-200">
+              <div className="flex flex-wrap gap-2">
+                {tabs.map((tab, index) => {
+                  const Icon = tab.icon;
+                  const isActive = activeTab === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`flex items-center space-x-3 px-8 py-4 rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 group relative overflow-hidden ${
+                        isActive
+                          ? `bg-gradient-to-r ${tab.color} text-white shadow-lg`
+                          : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      } animate-in slide-in-from-bottom-4 duration-1000`}
+                      style={{ animationDelay: `${index * 100 + 300}ms` }}
+                    >
+                      <Icon className="w-6 h-6" />
+                      <span className="font-bold">{tab.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>
 
-          {/* Tab Content */}
-          <div className="animate-in slide-in-from-bottom-4 duration-1000 delay-400">
-            {renderTabContent()}
+            {/* Tab Content */}
+            <div className="animate-in slide-in-from-bottom-4 duration-1000 delay-400">
+              {renderTabContent()}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </AppProvider>
   );
 };
 
