@@ -7,7 +7,7 @@ import WeekView from "./WeekView";
 const CalendarView = () => {
   const [currentView, setCurrentView] = useState<'month' | 'week'>('month');
   const [currentDate, setCurrentDate] = useState(new Date());
-  const { user } = useApp();
+  const { user, appointments = [] } = useApp();
 
   const navigateMonth = (direction: 'prev' | 'next') => {
     const newDate = new Date(currentDate);
@@ -108,9 +108,9 @@ const CalendarView = () => {
       {/* Calendar Content */}
       <div className="flex-1 overflow-hidden">
         {currentView === 'month' ? (
-          <MonthView currentDate={currentDate} />
+          <MonthView currentDate={currentDate} appointments={appointments} />
         ) : (
-          <WeekView currentDate={currentDate} />
+          <WeekView currentDate={currentDate} appointments={appointments} />
         )}
       </div>
     </div>
