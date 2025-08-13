@@ -1,4 +1,5 @@
 import React from 'react';
+import ProfessionalNavbar from './ProfessionalNavbar';
 import ProfessionalHero from '../landing/ProfessionalHero';
 import ProfessionalModules from '../landing/ProfessionalModules';
 import ProfessionalCalendar from '../landing/ProfessionalCalendar';
