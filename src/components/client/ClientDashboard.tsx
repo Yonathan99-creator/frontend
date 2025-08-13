@@ -3,7 +3,7 @@ import { Calendar, User, Star, Clock, MapPin, Phone, Mail, Search, Filter, Bell,
 import { useAuth } from '../../contexts/auth/AuthContext';
 import { AppProvider } from '../../contexts/AppContext';
 import LoadingScreen from '../shared/LoadingScreen';
-import Navbar from '../shared/Navbar';
+import { Calendar, User, Star, Clock, MapPin, Phone, Mail, Search, Filter, Bell, Settings, Heart, Bookmark, TrendingUp, Award, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Gift, Rocket, Diamond, CheckCircle, Eye, Share2 } from 'lucide-react';
 
 const ClientDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -339,7 +339,28 @@ const ClientDashboard: React.FC = () => {
   return (
     <AppProvider>
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
-        <Navbar userRole="client" />
+        {/* Client Navbar */}
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 transition-all duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-16">
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
+                  <Calendar className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                  ProBooking
+                </span>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center">
+                  <span className="text-white text-sm font-medium">
+                    {user?.name.split(' ').map(n => n[0]).join('')}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
         
         <div className="pt-20 pb-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

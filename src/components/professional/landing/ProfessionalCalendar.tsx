@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Clock, MapPin, User, Calendar as CalendarIcon } from 'lucide-react';
-import { UserRole } from '../../types/auth';
 
-interface LandingCalendarProps {
-  userRole?: UserRole;
-}
-
-const LandingCalendar: React.FC<LandingCalendarProps> = ({ userRole }) => {
+const ProfessionalCalendar: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [viewMode, setViewMode] = useState<'day' | 'month'>('day');
-
-  if (!userRole || userRole === 'superadmin') return null;
 
   const appointments = [
     {
@@ -370,4 +363,4 @@ const LandingCalendar: React.FC<LandingCalendarProps> = ({ userRole }) => {
   );
 };
 
-export default LandingCalendar;
+export default ProfessionalCalendar;

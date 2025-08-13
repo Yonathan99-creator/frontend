@@ -11,61 +11,33 @@ import {
   LogOut,
   ChevronDown,
   Menu,
-  X,
-  TrendingUp,
-  Users,
-  BarChart3
+  X
 } from 'lucide-react';
-import { useTheme } from '../../contexts/ThemeContext';
-import { useApp } from '../../contexts/AppContext';
-import { useAuth } from '../../contexts/auth/AuthContext';
-import { UserRole } from '../../types/auth';
+import { useTheme } from '../../../contexts/ThemeContext';
+import { useApp } from '../../../contexts/AppContext';
+import { useAuth } from '../../../contexts/auth/AuthContext';
 
-interface NavbarProps {
+interface ProfessionalNavbarProps {
   onLogoClick?: () => void;
   showBackToLanding?: boolean;
-  userRole?: UserRole;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onLogoClick, showBackToLanding = false, userRole }) => {
+const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, showBackToLanding = false }) => {
   const { theme, toggleTheme } = useTheme();
   const { logout, user } = useAuth();
   const appContext = useApp();
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Get modules based on user role
-  const getModulesForRole = (role?: UserRole) => {
-    switch (role) {
-      case 'professional':
-        return [
-          { name: 'My Profile', icon: User },
-          { name: 'My Services', icon: Settings },
-          { name: 'My Calendar', icon: Calendar },
-          { name: 'My Appointments', icon: Clock },
-          { name: 'My Reviews', icon: Star },
-          { name: 'My Subscription', icon: CreditCard }
-        ];
-      case 'client':
-        return [
-          { name: 'Book Service', icon: Calendar },
-          { name: 'My Appointments', icon: Clock },
-          { name: 'My Profile', icon: User },
-          { name: 'Reviews', icon: Star }
-        ];
-      case 'superadmin':
-        return [
-          { name: 'Overview', icon: TrendingUp },
-          { name: 'User Management', icon: Users },
-          { name: 'Analytics', icon: BarChart3 },
-          { name: 'System Settings', icon: Settings }
-        ];
-      default:
-        return [];
-    }
-  };
+  const modules = [
+    { name: 'My Profile', icon: User },
+    { name: 'My Services', icon: Settings },
+    { name: 'My Calendar', icon: Calendar },
+    { name: 'My Appointments', icon: Clock },
+    { name: 'My Reviews', icon: Star },
+    { name: 'My Subscription', icon: CreditCard }
+  ];
 
-  const modules = getModulesForRole(userRole);
   const currentModule = appContext?.currentModule;
   const setCurrentModule = appContext?.setCurrentModule;
 
@@ -156,7 +128,7 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick, showBackToLanding = false,
                 className="flex items-center space-x-3 p-1 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
               >
                 <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">JP</span>
+                  <span className="text-white text-sm font-medium">{userInfo.initials}</span>
                 </div>
                 <div className="hidden sm:block text-left">
                   <p className="text-sm font-medium text-gray-900 dark:text-white">{userInfo.name}</p>
@@ -242,4 +214,4 @@ const Navbar: React.FC<NavbarProps> = ({ onLogoClick, showBackToLanding = false,
   );
 };
 
-export default Navbar;
+export default ProfessionalNavbar;

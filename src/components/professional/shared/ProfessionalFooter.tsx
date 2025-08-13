@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, Mail, Phone, MapPin, Heart } from 'lucide-react';
 
-const Footer: React.FC = () => {
+const ProfessionalFooter: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -102,4 +102,4 @@ const Footer: React.FC = () => {
   );
 };
 
-export default Footer;
+export default ProfessionalFooter;

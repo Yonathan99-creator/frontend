@@ -2,8 +2,8 @@ import React from 'react';
 import { ThemeProvider } from '../../contexts/ThemeContext';
 import { AppProvider, useApp } from '../../contexts/AppContext';
 import { ProfessionalLoadingScreen } from './loading';
-import Navbar from '../shared/Navbar';
-import LandingPage from '../shared/LandingPage';
+import ProfessionalNavbar from './shared/ProfessionalNavbar';
+import ProfessionalLandingPage from './shared/ProfessionalLandingPage';
 import CalendarView from './calendar/CalendarView';
 import MyProfile from './profile/MyProfile';
 import MyServices from './services/MyServices';
@@ -43,8 +43,8 @@ const ProfessionalDashboardContent: React.FC = () => {
   if (showLanding) {
     return (
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-        <Navbar onLogoClick={handleBackToLanding} showBackToLanding={false} userRole="professional" />
-        <LandingPage onModuleClick={handleEnterDashboard} userRole="professional" />
+        <ProfessionalNavbar onLogoClick={handleBackToLanding} showBackToLanding={false} />
+        <ProfessionalLandingPage onModuleClick={handleEnterDashboard} />
       </div>
     );
   }
@@ -70,7 +70,7 @@ const ProfessionalDashboardContent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-all duration-300">
-      <Navbar onLogoClick={handleBackToLanding} showBackToLanding={true} userRole="professional" />
+      <ProfessionalNavbar onLogoClick={handleBackToLanding} showBackToLanding={true} />
       <main className="pt-20 px-4 sm:px-6 lg:px-8 pb-8">
         <div className="max-w-7xl mx-auto">
           {renderCurrentModule()}
