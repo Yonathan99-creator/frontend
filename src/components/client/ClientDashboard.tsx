@@ -3,17 +3,21 @@ import { Calendar, User, Star, Clock, MapPin, Phone, Mail, Search, Filter, Bell,
 import { useAuth } from '../../contexts/auth/AuthContext';
 import { AppProvider } from '../../contexts/AppContext';
 import { LoadingScreen } from '../shared';
+import { ThemeProvider } from '../../contexts/ThemeContext';
+import ClientNavbar from './shared/ClientNavbar';
+import ClientLandingPage from './shared/ClientLandingPage';
 
-const ClientDashboard: React.FC = () => {
+const ClientDashboardContent: React.FC = () => {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('appointments');
   const [isLoading, setIsLoading] = useState(true);
+  const [showLanding, setShowLanding] = useState(true);
 
   React.useEffect(() => {
     // Simulate loading time for client dashboard
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -21,6 +25,25 @@ const ClientDashboard: React.FC = () => {
   if (isLoading) {
     return (
       <LoadingScreen />
+    );
+  }
+
+  const handleEnterDashboard = (moduleName?: string) => {
+    setShowLanding(false);
+    if (moduleName) {
+      // Module will be set by the component that calls this
+    }
+  };
+
+  const handleBackToLanding = () => {
+    setShowLanding(true);
+  };
+
+  if (showLanding) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+        <ClientLandingPage onModuleClick={handleEnterDashboard} />
+      </div>
     );
   }
 
@@ -332,83 +355,71 @@ const ClientDashboard: React.FC = () => {
   };
 
   return (
-    <AppProvider>
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
-        {/* Client Navbar */}
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 transition-all duration-300">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
-                  <Calendar className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                  ProBooking
-                </span>
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+      <ClientNavbar onLogoClick={handleBackToLanding} showBackToLanding={true} isLandingPage={false} />
+      <main className="pt-20 px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="mb-8 animate-in slide-in-from-top-4 duration-1000">
+            <div className="flex items-center space-x-4 mb-4">
+              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 hover:rotate-12 group">
+                <Calendar className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">
-                    {user?.name.split(' ').map(n => n[0]).join('')}
-                  </span>
-                </div>
+              <div>
+                <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                  Welcome back, {user?.name?.split(' ')[0]}!
+                </h1>
+                <p className="text-xl text-gray-600 dark:text-gray-400 mt-2">
+                  Manage your appointments and discover new services
+                </p>
               </div>
             </div>
           </div>
-        </nav>
         
-        <div className="pt-20 pb-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Header */}
-            <div className="mb-8 animate-in slide-in-from-top-4 duration-1000">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 hover:rotate-12 group">
-                  <Calendar className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <div>
-                  <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                    Welcome back, {user?.name?.split(' ')[0]}!
-                  </h1>
-                  <p className="text-xl text-gray-600 dark:text-gray-400 mt-2">
-                    Manage your appointments and discover new services
-                  </p>
-                </div>
-              </div>
-            </div>
 
-            {/* Navigation Tabs */}
-            <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-2 mb-8 hover:shadow-3xl transition-all duration-500 animate-in slide-in-from-bottom-4 duration-1000 delay-200">
-              <div className="flex flex-wrap gap-2">
-                {tabs.map((tab, index) => {
-                  const Icon = tab.icon;
-                  const isActive = activeTab === tab.id;
-                  return (
-                    <button
-                      key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      className={`flex items-center space-x-3 px-8 py-4 rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 group relative overflow-hidden ${
-                        isActive
-                          ? `bg-gradient-to-r ${tab.color} text-white shadow-lg`
-                          : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                      } animate-in slide-in-from-bottom-4 duration-1000`}
-                      style={{ animationDelay: `${index * 100 + 300}ms` }}
-                    >
-                      <Icon className="w-6 h-6" />
-                      <span className="font-bold">{tab.label}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
 
-            {/* Tab Content */}
-            <div className="animate-in slide-in-from-bottom-4 duration-1000 delay-400">
-              {renderTabContent()}
+          {/* Navigation Tabs */}
+          <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-2 mb-8 hover:shadow-3xl transition-all duration-500 animate-in slide-in-from-bottom-4 duration-1000 delay-200">
+            <div className="flex flex-wrap gap-2">
+              {tabs.map((tab, index) => {
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex items-center space-x-3 px-8 py-4 rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 group relative overflow-hidden ${
+                      isActive
+                        ? `bg-gradient-to-r ${tab.color} text-white shadow-lg`
+                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    } animate-in slide-in-from-bottom-4 duration-1000`}
+                    style={{ animationDelay: `${index * 100 + 300}ms` }}
+                  >
+                    <Icon className="w-6 h-6" />
+                    <span className="font-bold">{tab.label}</span>
+                  </button>
+                );
+              })}
             </div>
+          </div>
+
+          {/* Tab Content */}
+          <div className="animate-in slide-in-from-bottom-4 duration-1000 delay-400">
+            {renderTabContent()}
           </div>
         </div>
-      </div>
-    </AppProvider>
+      </main>
+    </div>
+  );
+};
+
+const ClientDashboard: React.FC = () => {
+  return (
+    <ThemeProvider>
+      <AppProvider>
+        <ClientDashboardContent />
+      </AppProvider>
+    </ThemeProvider>
   );
 };
 
