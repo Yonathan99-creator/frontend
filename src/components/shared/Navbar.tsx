@@ -11,7 +11,10 @@ import {
   LogOut,
   ChevronDown,
   Menu,
-  X
+  X,
+  TrendingUp,
+  Users,
+  BarChart3
 } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useApp } from '../../contexts/AppContext';
