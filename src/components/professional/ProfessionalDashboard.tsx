@@ -43,7 +43,6 @@ const ProfessionalDashboardContent: React.FC = () => {
   if (showLanding) {
     return (
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-        <ProfessionalNavbar onLogoClick={handleBackToLanding} showBackToLanding={false} />
         <ProfessionalLandingPage onModuleClick={handleEnterDashboard} />
       </div>
     );
@@ -70,7 +69,7 @@ const ProfessionalDashboardContent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-all duration-300">
-      <ProfessionalNavbar onLogoClick={handleBackToLanding} showBackToLanding={true} />
+      <ProfessionalNavbar onLogoClick={handleBackToLanding} showBackToLanding={true} isLandingPage={false} />
       <main className="pt-20 px-4 sm:px-6 lg:px-8 pb-8">
         <div className="max-w-7xl mx-auto">
           {renderCurrentModule()}

@@ -20,9 +20,10 @@ import { useAuth } from '../../../contexts/auth/AuthContext';
 interface ProfessionalNavbarProps {
   onLogoClick?: () => void;
   showBackToLanding?: boolean;
+  isLandingPage?: boolean;
 }
 
-const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, showBackToLanding = false }) => {
+const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, showBackToLanding = false, isLandingPage = false }) => {
   const { theme, toggleTheme } = useTheme();
   const { logout, user } = useAuth();
   const appContext = useApp();
@@ -42,7 +43,9 @@ const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, sh
   const setCurrentModule = appContext?.setCurrentModule;
 
   const handleModuleChange = (moduleName: string) => {
-    setCurrentModule?.(moduleName);
+    if (!isLandingPage) {
+      setCurrentModule?.(moduleName);
+    }
     setIsMobileMenuOpen(false);
   };
 
@@ -81,35 +84,31 @@ const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, sh
                 ProBooking
               </span>
             </button>
-            {showBackToLanding && (
-              <div className="hidden sm:flex items-center space-x-2 ml-4 px-3 py-1 bg-blue-50 dark:bg-blue-900/20 rounded-full">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                <span className="text-sm text-blue-600 dark:text-blue-400 font-medium">Dashboard Mode</span>
-              </div>
-            )}
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {modules.map((module) => {
-              const Icon = module.icon;
-              const isActive = currentModule === module.name;
-              return (
-                <button
-                  key={module.name}
-                  onClick={() => handleModuleChange(module.name)}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 ${
-                    isActive
-                      ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shadow-sm'
-                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  <span className="text-sm font-medium">{module.name}</span>
-                </button>
-              );
-            })}
-          </div>
+          {!isLandingPage && (
+            <div className="hidden lg:flex items-center space-x-1">
+              {modules.map((module) => {
+                const Icon = module.icon;
+                const isActive = currentModule === module.name;
+                return (
+                  <button
+                    key={module.name}
+                    onClick={() => handleModuleChange(module.name)}
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 ${
+                      isActive
+                        ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shadow-sm'
+                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span className="text-sm font-medium">{module.name}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           {/* Right section */}
           <div className="flex items-center space-x-4">
@@ -154,7 +153,9 @@ const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, sh
                   <div className="py-2">
                     <button
                       onClick={() => {
-                        handleModuleChange('My Profile');
+                        if (!isLandingPage) {
+                          handleModuleChange('My Profile');
+                        }
                         setIsProfileMenuOpen(false);
                       }}
                       className="flex items-center space-x-3 w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
@@ -187,26 +188,28 @@ const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, sh
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-700 animate-in slide-in-from-top-2 duration-200">
-            <div className="space-y-1">
-              {modules.map((module) => {
-                const Icon = module.icon;
-                const isActive = currentModule === module.name;
-                return (
-                  <button
-                    key={module.name}
-                    onClick={() => handleModuleChange(module.name)}
-                    className={`flex items-center space-x-3 w-full px-4 py-3 rounded-xl transition-all duration-300 ${
-                      isActive
-                        ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span className="font-medium">{module.name}</span>
-                  </button>
-                );
-              })}
-            </div>
+            {!isLandingPage && (
+              <div className="space-y-1">
+                {modules.map((module) => {
+                  const Icon = module.icon;
+                  const isActive = currentModule === module.name;
+                  return (
+                    <button
+                      key={module.name}
+                      onClick={() => handleModuleChange(module.name)}
+                      className={`flex items-center space-x-3 w-full px-4 py-3 rounded-xl transition-all duration-300 ${
+                        isActive
+                          ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                          : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                      }`}
+                    >
+                      <Icon className="w-5 h-5" />
+                      <span className="font-medium">{module.name}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
         )}
       </div>
