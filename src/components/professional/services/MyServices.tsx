@@ -96,48 +96,60 @@ const MyServices: React.FC = () => {
                 description: 'Create new offering',
                 icon: Plus,
                 color: 'from-blue-500 to-cyan-600',
-                bgColor: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20'
+                bgColor: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20',
+                action: 'add-service'
               },
               {
                 title: 'Pricing Strategy',
                 description: 'Optimize prices',
                 icon: Target,
                 color: 'from-green-500 to-emerald-600',
-                bgColor: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20'
+                bgColor: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20',
+                action: 'pricing'
               },
               {
                 title: 'Service Analytics',
                 description: 'Performance insights',
                 icon: TrendingUp,
                 color: 'from-yellow-500 to-orange-600',
-                bgColor: 'from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20'
+                bgColor: 'from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20',
+                action: 'analytics'
               },
               {
                 title: 'Client Feedback',
                 description: 'Reviews & ratings',
                 icon: Heart,
                 color: 'from-purple-500 to-violet-600',
-                bgColor: 'from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20'
+                bgColor: 'from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20',
+                action: 'feedback'
               },
               {
                 title: 'Promotions',
                 description: 'Special offers',
                 icon: Gift,
                 color: 'from-orange-500 to-red-600',
-                bgColor: 'from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20'
+                bgColor: 'from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20',
+                action: 'promotions'
               },
               {
                 title: 'Settings',
                 description: 'Service preferences',
                 icon: Settings,
                 color: 'from-indigo-500 to-purple-600',
-                bgColor: 'from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20'
+                bgColor: 'from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20',
+                action: 'settings'
               }
             ].map((action, index) => {
               const Icon = action.icon;
               return (
                 <button 
                   key={action.title}
+                  onClick={() => {
+                    if (action.action === 'add-service') {
+                      // Navigate to add service page
+                      window.location.hash = 'add-service';
+                    }
+                  }}
                   className={`bg-gradient-to-br ${action.bgColor} rounded-3xl p-6 text-center hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group border border-white/20 dark:border-gray-700/50 cursor-pointer active:scale-95`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >

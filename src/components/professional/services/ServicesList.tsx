@@ -122,6 +122,9 @@ const ServicesList: React.FC<ServicesListProps> = ({
     }
   ];
 
+  const handleAddService = () => {
+    window.location.hash = 'add-service';
+  };
   const getStatusColor = (isActive: boolean) => {
     return isActive 
       ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
@@ -173,6 +176,13 @@ const ServicesList: React.FC<ServicesListProps> = ({
         </div>
         
         <div className="flex items-center space-x-3">
+          <button
+            onClick={handleAddService}
+            className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-2xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-bold"
+          >
+            <Plus className="w-5 h-5" />
+            <span>Add Service</span>
+          </button>
           <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl p-2">
             <button
               onClick={() => setViewMode('list')}
@@ -364,7 +374,10 @@ const ServicesList: React.FC<ServicesListProps> = ({
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
             Try adjusting your search criteria or create a new service to get started.
           </p>
-          <button className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-2xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+          <button 
+            onClick={handleAddService}
+            className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-2xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
             <Scissors className="w-5 h-5" />
             <span className="font-bold">Create New Service</span>
           </button>
