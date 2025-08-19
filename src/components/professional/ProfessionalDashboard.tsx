@@ -10,11 +10,13 @@ import MyServices from './services/MyServices';
 import MyAppointments from './appointments/MyAppointments';
 import MyReviews from './reviews/MyReviews';
 import MySubscription from './subscription/MySubscription';
+import AddServicePage from './services/add/AddServicePage';
 
 const ProfessionalDashboardContent: React.FC = () => {
   const { currentModule } = useApp();
   const [showLanding, setShowLanding] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [showAddService, setShowAddService] = React.useState(false);
 
   React.useEffect(() => {
     // Simulate loading time for professional dashboard
@@ -25,12 +27,47 @@ const ProfessionalDashboardContent: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  React.useEffect(() => {
+    // Listen for hash changes to show add service page
+    const handleHashChange = () => {
+      if (window.location.hash === '#add-service') {
+        setShowAddService(true);
+        setShowLanding(false);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // Check initial hash
+
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   if (isLoading) {
     return <LoadingScreen />;
   }
 
+  if (showAddService) {
+    return (
+      <div className="min-h-screen">
+        <AddServicePage 
+          onBack={() => {
+            setShowAddService(false);
+            window.location.hash = '';
+          }}
+          onSave={(serviceData) => {
+            console.log('Service created:', serviceData);
+            setShowAddService(false);
+            window.location.hash = '';
+            // Here you would typically save to your backend
+          }}
+        />
+      </div>
+    );
+  }
+
   const handleEnterDashboard = (moduleName?: string) => {
     setShowLanding(false);
+    setShowAddService(false);
     if (moduleName) {
       // Module will be set by the component that calls this
     }
@@ -38,6 +75,7 @@ const ProfessionalDashboardContent: React.FC = () => {
 
   const handleBackToLanding = () => {
     setShowLanding(true);
+    setShowAddService(false);
     window.location.hash = '';
   };
 
