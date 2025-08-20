@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Scissors, Clock, DollarSign, Star, Users, TrendingUp, Edit, Trash2, Eye, MoreVertical, Crown, Trophy, Medal, Flame, Sparkles, Zap, Target, Award, Heart, Bookmark, Share2, CheckCircle, AlertCircle, XCircle, Calendar, Phone, Mail, MapPin } from 'lucide-react';
+import { Scissors, Clock, DollarSign, Star, Users, TrendingUp, Edit, Trash2, Eye, MoreVertical, Crown, Trophy, Medal, Flame, Sparkles, Zap, Target, Award, Heart, Bookmark, Share2, CheckCircle, AlertCircle, XCircle, Calendar, Phone, Mail, MapPin, Plus } from 'lucide-react';
 
 interface Service {
   id: string;
