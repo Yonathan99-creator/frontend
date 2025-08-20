@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Save, X, Upload, Image, Palette, Scissors, Clock, DollarSign, Star, Users, Calendar, Award, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Heart, Eye, Bookmark, Gift, Rocket, Diamond, Camera, Video, Mic, Settings, Bell, Share2, Plus, Minus, CheckCircle, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Save, X, Upload, Image, Palette, Scissors, Clock, DollarSign, Star, Users, Calendar, Award, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Heart, Eye, Bookmark, Gift, Rocket, Diamond, Camera, Video, Mic, Settings, Bell, Share2, Plus, Minus, CheckCircle, AlertCircle, BarChart3 } from 'lucide-react';
 import ServiceForm from './ServiceForm';
 import ServicePreview from './ServicePreview';
 import ServiceGallery from './ServiceGallery';
