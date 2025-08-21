@@ -23,7 +23,7 @@ export const useApp = () => {
 };
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentModule, setCurrentModule] = useState('My Calendar');
+  const [currentModule, setCurrentModule] = useState('home');
   
   // Sample data
   const [appointments] = useState<Appointment[]>([

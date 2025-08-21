@@ -14,7 +14,7 @@ import AddServicePage from './add_service/AddServicePage';
 import PaymentPage from './payment/PaymentPage';
 
 const ProfessionalDashboardContent: React.FC = () => {
-  const { currentModule } = useApp();
+  const { currentModule, setCurrentModule } = useApp();
   const [showLanding, setShowLanding] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState(true);
   const [showAddService, setShowAddService] = React.useState(false);
@@ -28,6 +28,13 @@ const ProfessionalDashboardContent: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Initialize with home module when landing is shown
+  React.useEffect(() => {
+    if (showLanding && setCurrentModule) {
+      setCurrentModule('home');
+    }
+  }, [showLanding, setCurrentModule]);
 
   React.useEffect(() => {
     // Listen for hash changes to show add service page
@@ -60,11 +67,13 @@ const ProfessionalDashboardContent: React.FC = () => {
           onBack={() => {
             setShowPayment(false);
             window.location.hash = '';
+            setShowLanding(true);
           }}
           onComplete={(paymentData) => {
             console.log('Payment completed:', paymentData);
             setShowPayment(false);
             window.location.hash = '';
+            setShowLanding(true);
             // Here you would typically process the payment and update subscription
           }}
         />
@@ -80,12 +89,14 @@ const ProfessionalDashboardContent: React.FC = () => {
             setShowAddService(false);
             setShowPayment(false);
             window.location.hash = '';
+            setShowLanding(true);
           }}
           onSave={(serviceData) => {
             console.log('Service created:', serviceData);
             setShowAddService(false);
             setShowPayment(false);
             window.location.hash = '';
+            setShowLanding(true);
             // Here you would typically save to your backend
           }}
         />
@@ -98,7 +109,7 @@ const ProfessionalDashboardContent: React.FC = () => {
     setShowAddService(false);
     setShowPayment(false);
     if (moduleName) {
-      // Module will be set by the component that calls this
+      setCurrentModule(moduleName);
     }
   };
 
@@ -107,6 +118,9 @@ const ProfessionalDashboardContent: React.FC = () => {
     setShowAddService(false);
     setShowPayment(false);
     window.location.hash = '';
+    if (setCurrentModule) {
+      setCurrentModule('home');
+    }
   };
 
   if (showLanding) {
@@ -118,6 +132,14 @@ const ProfessionalDashboardContent: React.FC = () => {
   }
 
   const renderCurrentModule = () => {
+    if (currentModule === 'home') {
+      return (
+        <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+          <ProfessionalLanding onNavigate={handleEnterDashboard} />
+        </div>
+      );
+    }
+    
     switch (currentModule) {
       case 'My Profile':
         return <MyProfile />;
@@ -135,6 +157,11 @@ const ProfessionalDashboardContent: React.FC = () => {
         return <CalendarView />;
     }
   };
+
+  // If current module is home, show landing without navbar wrapper
+  if (currentModule === 'home') {
+    return renderCurrentModule();
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-all duration-300">
