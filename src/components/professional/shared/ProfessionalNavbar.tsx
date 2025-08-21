@@ -69,19 +69,21 @@ const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, sh
   const handleModuleChange = (moduleName: string) => {
     if (moduleName === 'home') {
       // Handle home navigation
-      if (isLandingPage && onLogoClick) {
-        onLogoClick();
-      } else if (setCurrentModule) {
+      if (setCurrentModule) {
         setCurrentModule('home');
       }
-    } else if (setCurrentModule) {
-      setCurrentModule(moduleName);
-      // If we're on landing page and user clicks a module, we need to navigate away from landing
+      if (onLogoClick) {
+        onLogoClick();
+      }
+    } else {
+      // For non-home modules, always set the module first
+      if (setCurrentModule) {
+        setCurrentModule(moduleName);
+      }
+      // If we're on landing page, we need to trigger navigation away from landing
       if (isLandingPage && onLogoClick) {
-        // This will trigger the parent component to hide the landing page
-        setTimeout(() => {
-          setCurrentModule(moduleName);
-        }, 100);
+        // Call onLogoClick to trigger the parent to switch away from landing mode
+        onLogoClick();
       }
     }
     setIsMobileMenuOpen(false);
@@ -130,13 +132,12 @@ const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, sh
           </div>
 
           {/* Navigation Items - Only show on larger screens and when not on landing page */}
-          {(
+          {!isLandingPage && (
             <div className="hidden xl:block flex-1 max-w-4xl mx-8">
               <div className="flex items-center justify-center space-x-1">
                 {navItems.map((item, index) => {
                   const Icon = item.icon;
                   const isActive = item.href === 'home' ? currentModule === 'home' : currentModule === item.href;
-                  const isHome = item.href === 'home';
                   
                   return (
                     <button
@@ -266,9 +267,7 @@ const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, sh
                   <div className="py-2">
                     <button
                       onClick={() => {
-                        if (!isLandingPage) {
-                          handleModuleChange('My Profile');
-                        }
+                        handleModuleChange('My Profile');
                         setIsProfileMenuOpen(false);
                       }}
                       className="flex items-center space-x-3 w-full px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
@@ -303,7 +302,7 @@ const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, sh
         </div>
 
         {/* Mobile menu */}
-        {isMobileMenuOpen && (
+        {isMobileMenuOpen && !isLandingPage && (
           <div className="xl:hidden mt-4 pb-4 animate-in slide-in-from-top-2 duration-200">
             <div className="flex flex-col space-y-1">
               {navItems.map((item) => {
