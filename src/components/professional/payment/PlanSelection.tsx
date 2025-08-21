@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Crown, Rocket, Diamond, Check, Star, Zap, Shield, Users, Calendar, Award, TrendingUp, BarChart3, Activity, Clock, Target, Heart, Eye, Bookmark, Sparkles, Trophy, Medal, Flame, Gift, CheckCircle, AlertCircle, Info, Lightbulb, Plus, Minus, Settings, Bell, Share2, DollarSign, Percent } from 'lucide-react';
+import { Crown, Rocket, Diamond, Check, Star, Zap, Shield, Users, Calendar, Award, TrendingUp, BarChart3, Activity, Clock, Target, Heart, Eye, Bookmark, Sparkles, Trophy, Medal, Flame, Gift, CheckCircle, AlertCircle, Info, Lightbulb, Plus, Minus, Settings, Bell, Share2, DollarSign, Percent, X } from 'lucide-react';
 
 interface PaymentData {
   firstName: string;
