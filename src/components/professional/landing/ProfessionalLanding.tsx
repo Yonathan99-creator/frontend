@@ -13,9 +13,13 @@ interface ProfessionalLandingProps {
 const ProfessionalLanding: React.FC<ProfessionalLandingProps> = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <ProfessionalNavbar onLogoClick={() => {}} showBackToLanding={false}/>
+      <ProfessionalNavbar 
+        onLogoClick={() => onNavigate?.('home')} 
+        showBackToLanding={false}
+        isLandingPage={true}
+      />
       <ProfessionalHero />
-      <ProfessionalModules onModuleClick={onNavigate} />
+      <ProfessionalModules onModuleClick={(moduleName) => onNavigate?.(moduleName)} />
       <ProfessionalCalendar />
       <ProfessionalReviews />
       <ProfessionalFooter />

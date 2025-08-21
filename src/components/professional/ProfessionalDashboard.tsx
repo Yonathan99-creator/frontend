@@ -123,10 +123,18 @@ const ProfessionalDashboardContent: React.FC = () => {
     }
   };
 
+  const handleNavbarNavigation = (moduleName: string) => {
+    if (moduleName === 'home') {
+      handleBackToLanding();
+    } else {
+      handleEnterDashboard(moduleName);
+    }
+  };
+
   if (showLanding) {
     return (
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-        <ProfessionalLanding onNavigate={handleEnterDashboard} />
+        <ProfessionalLanding onNavigate={handleNavbarNavigation} />
       </div>
     );
   }
