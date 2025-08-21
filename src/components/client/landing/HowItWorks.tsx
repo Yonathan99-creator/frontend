@@ -155,4 +155,4 @@ const HowItWorks: React.FC = () => {
   );
 };
 
-export default Features;
+export default HowItWorks;
