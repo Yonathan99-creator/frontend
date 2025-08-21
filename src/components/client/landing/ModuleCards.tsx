@@ -74,7 +74,7 @@ const ModuleCards: React.FC<ModuleCardsProps> = ({ onNavigate }) => {
               key={module.id}
               className="group bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-6 hover:scale-105 border border-gray-200 dark:border-gray-700 animate-fade-in-up relative overflow-hidden cursor-pointer"
               style={{ animationDelay: `${module.delay}ms` }}
-              className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-500 hover:scale-110 hover:shadow-2xl shadow-lg animate-pulse-glow"
+              onClick={() => onNavigate && onNavigate(module.id)}
             >
               {/* Background gradient on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${module.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}></div>
@@ -143,7 +143,7 @@ const ModuleCards: React.FC<ModuleCardsProps> = ({ onNavigate }) => {
             
             <div className="relative z-10">
               <div className="flex items-center justify-center mb-6">
-              className="group inline-flex items-center px-8 py-4 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 transition-all duration-500 hover:scale-110 shadow-lg hover:shadow-xl"
+                <Shield className="h-12 w-12 text-blue-400 mr-4" />
                 <Clock className="h-12 w-12 text-purple-400" />
               </div>
               <h3 className="text-3xl md:text-4xl font-bold mb-6">
