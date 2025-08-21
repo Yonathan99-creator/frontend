@@ -10,7 +10,7 @@ import MyServices from './services/MyServices';
 import MyAppointments from './appointments/MyAppointments';
 import MyReviews from './reviews/MyReviews';
 import MySubscription from './subscription/MySubscription';
-import AddServicePage from './services/add/AddServicePage';
+import AddServicePage from './add_service/AddServicePage';
 
 const ProfessionalDashboardContent: React.FC = () => {
   const { currentModule } = useApp();
