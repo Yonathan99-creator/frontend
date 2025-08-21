@@ -101,7 +101,7 @@ const Features: React.FC = () => {
                 </p>
 
                 {/* Decorative element */}
-                <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute top-6 right-6 w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             </div>
           ))}

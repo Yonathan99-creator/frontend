@@ -299,13 +299,11 @@ const FeaturedProfessionals: React.FC<FeaturedProfessionalsProps> = ({ onNavigat
                               <Calendar className="h-4 w-4 inline mr-2 group-hover/btn:animate-bounce" />
                               Book Now
                             </button>
-                            <button className="px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded-xl transition-all duration-300 hover:scale-105">
-                              <button 
-                                onClick={() => onNavigate && onNavigate('profile')}
-                                className="px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded-xl transition-all duration-300 hover:scale-105"
-                              >
-                                View Profile
-                              </button>
+                            <button 
+                              onClick={() => onNavigate && onNavigate('profile')}
+                              className="px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded-xl transition-all duration-300 hover:scale-105"
+                            >
+                              View Profile
                             </button>
                           </div>
                         </div>

@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Search, User, LogIn, Moon, Sun, Calendar, Menu, X, Bell, ChevronDown, Settings, LogOut, Home, Star, CreditCard } from 'lucide-react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../../contexts/ThemeContext';
+import { useAuth } from '../../../contexts/auth/AuthContext';
 
-interface NavbarProps {
+interface ClientNavbarProps {
   currentPage?: string;
   onNavigate?: (page: string) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => {
+const ClientNavbar: React.FC<ClientNavbarProps> = ({ currentPage = 'home', onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-  const { isDark, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,6 +48,24 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
     setIsMobileMenuOpen(false);
   };
 
+  const handleLogout = () => {
+    logout();
+    setIsProfileMenuOpen(false);
+  };
+
+  const getUserDisplayInfo = () => {
+    if (!user) return { initials: 'U', name: 'User', email: 'user@example.com' };
+    
+    const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase();
+    return {
+      initials,
+      name: user.name,
+      email: user.email
+    };
+  };
+
+  const userInfo = getUserDisplayInfo();
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
       isScrolled 
@@ -61,10 +81,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
               className="flex items-center space-x-3 group"
             >
               <div className="relative">
-                <Calendar className="h-12 w-12 text-primary-600 dark:text-primary-400 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500" />
-                <div className="absolute inset-0 bg-primary-600/20 rounded-full scale-0 group-hover:scale-200 transition-transform duration-700 animate-pulse"></div>
+                <Calendar className="h-12 w-12 text-blue-600 dark:text-blue-400 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500" />
+                <div className="absolute inset-0 bg-blue-600/20 rounded-full scale-0 group-hover:scale-200 transition-transform duration-700 animate-pulse"></div>
               </div>
-              <span className="text-3xl font-bold text-gradient">
+              <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 ProBooking
               </span>
             </button>
@@ -79,8 +99,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
                   onClick={() => handleNavigation(item.href)}
                   className={`relative px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-500 hover:bg-white/60 dark:hover:bg-gray-800/60 hover:shadow-xl hover:scale-110 group animate-fade-in-up ${
                     currentPage === item.href
-                      ? 'text-primary-600 dark:text-primary-400 bg-white/60 dark:bg-gray-800/60'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
+                      ? 'text-blue-600 dark:text-blue-400 bg-white/60 dark:bg-gray-800/60'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
                   }`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
@@ -88,10 +108,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
                   {item.name}
                   {/* Indicador activo */}
                   {currentPage === item.href && (
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-full animate-fade-in-up"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-fade-in-up"></div>
                   )}
                   {/* Indicador hover */}
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-full w-0 group-hover:w-full transition-all duration-300 opacity-50"></div>
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full w-0 group-hover:w-full transition-all duration-300 opacity-50"></div>
                 </button>
               ))}
             </div>
@@ -101,8 +121,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
           <div className="flex items-center space-x-4">
             {/* Search Button */}
             <button className="hidden md:flex items-center space-x-2 px-6 py-3 bg-gray-100/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 rounded-2xl transition-all duration-500 hover:scale-110 hover:shadow-xl group backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
-              <Search className="h-5 w-5 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors group-hover:rotate-12 duration-300" />
-              <span className="text-sm text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Search</span>
+              <Search className="h-5 w-5 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors group-hover:rotate-12 duration-300" />
+              <span className="text-sm text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Search</span>
             </button>
 
             {/* Notifications */}
@@ -111,7 +131,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
                 onClick={() => setIsNotificationOpen(!isNotificationOpen)}
                 className="relative p-3 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-500 hover:scale-110 hover:shadow-xl group border border-transparent hover:border-gray-200/50 dark:hover:border-gray-700/50"
               >
-                <Bell className="h-6 w-6 text-gray-600 dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors group-hover:animate-bounce" />
+                <Bell className="h-6 w-6 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors group-hover:animate-bounce" />
                 {unreadCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center animate-pulse shadow-lg">
                     {unreadCount}
@@ -130,7 +150,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
                       <div
                         key={notification.id}
                         className={`p-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer ${
-                          notification.unread ? 'bg-primary-50 dark:bg-primary-900/10' : ''
+                          notification.unread ? 'bg-blue-50 dark:bg-blue-900/10' : ''
                         }`}
                       >
                         <div className="flex justify-between items-start">
@@ -146,7 +166,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
                             </p>
                           </div>
                           {notification.unread && (
-                            <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
+                            <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                           )}
                         </div>
                       </div>
@@ -160,9 +180,9 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
             <button
               onClick={toggleTheme}
               className="p-3 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-500 hover:scale-110 hover:shadow-xl group border border-transparent hover:border-gray-200/50 dark:hover:border-gray-700/50"
-              title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              {isDark ? (
+              {theme === 'dark' ? (
                 <Sun className="h-6 w-6 text-yellow-500 group-hover:rotate-180 group-hover:scale-125 transition-transform duration-700" />
               ) : (
                 <Moon className="h-6 w-6 text-gray-600 dark:text-gray-300 group-hover:rotate-180 group-hover:scale-125 transition-transform duration-700" />
@@ -175,11 +195,9 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
                 onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
                 className="flex items-center space-x-3 p-2 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-500 hover:scale-105 hover:shadow-xl group border border-transparent hover:border-gray-200/50 dark:hover:border-gray-700/50"
               >
-                <img
-                  src="https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face"
-                  alt="Profile"
-                  className="h-10 w-10 rounded-full object-cover ring-2 ring-white dark:ring-gray-700 group-hover:ring-primary-400 transition-all duration-300"
-                />
+                <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center ring-2 ring-white dark:ring-gray-700 group-hover:ring-blue-400 transition-all duration-300">
+                  <span className="text-white font-medium text-sm">{userInfo.initials}</span>
+                </div>
                 <ChevronDown className={`h-4 w-4 text-gray-600 dark:text-gray-300 transition-transform duration-300 ${isProfileMenuOpen ? 'rotate-180' : ''}`} />
               </button>
 
@@ -187,8 +205,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
               {isProfileMenuOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-600 animate-fade-in-up z-50 backdrop-blur-xl">
                   <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-                    <p className="font-semibold text-gray-900 dark:text-gray-100">John Doe</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">john@example.com</p>
+                    <p className="font-semibold text-gray-900 dark:text-gray-100">{userInfo.name}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{userInfo.email}</p>
                   </div>
                   <div className="py-2">
                     <a
@@ -199,6 +217,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
                       Profile
                     </a>
                     <button
+                      onClick={handleLogout}
                       className="flex items-center w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                     >
                       <LogOut className="h-4 w-4 mr-3" />
@@ -233,7 +252,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
                   onClick={() => handleNavigation(item.href)}
                   className={`flex items-center px-4 py-3 rounded-2xl transition-all duration-500 ${
                     currentPage === item.href
-                      ? 'text-primary-600 dark:text-primary-400 bg-white/60 dark:bg-gray-800/60'
+                      ? 'text-blue-600 dark:text-blue-400 bg-white/60 dark:bg-gray-800/60'
                       : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/60 dark:hover:bg-gray-800/60'
                   }`}
                 >
@@ -249,4 +268,4 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
   );
 };
 
-export default Navbar;
+export default ClientNavbar;
