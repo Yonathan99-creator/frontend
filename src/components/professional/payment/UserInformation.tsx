@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Building, Phone, Mail, MapPin, Globe, CheckCircle, AlertCircle, Info, Lightbulb, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Award, Heart, Star, Eye, Bookmark, Gift, Rocket, Diamond, Camera, Video, Mic, Settings, Bell, Share2, Plus, Minus, X } from 'lucide-react';
+import { User, Building, Phone, Mail, MapPin, Globe, CheckCircle, AlertCircle, Info, Lightbulb, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Award, Heart, Star, Eye, Bookmark, Gift, Rocket, Diamond, Camera, Video, Mic, Settings, Bell, Share2, Plus, Minus, X, FileText } from 'lucide-react';
 
 interface PaymentData {
   firstName: string;
