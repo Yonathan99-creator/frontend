@@ -184,4 +184,4 @@ const CalendarControls: React.FC = () => {
   );
 };
 
-export default CalendarStats;
+export default CalendarControls;
