@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, User, LogIn, Moon, Sun, Calendar, Menu, X, Bell, ChevronDown, Settings, LogOut, Home, Star, CreditCard } from 'lucide-react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../../../contexts/ThemeContext';
+import { useAuth } from '../../../../contexts/auth/AuthContext';
 
 interface NavbarProps {
   currentPage?: string;
@@ -12,7 +13,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-  const { isDark, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,6 +40,23 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
   ];
 
   const unreadCount = notifications.filter(n => n.unread).length;
+
+  const handleLogout = () => {
+    logout();
+    setIsProfileMenuOpen(false);
+  };
+
+  const getUserDisplayInfo = () => {
+    if (!user) return { initials: 'U', name: 'User' };
+    
+    const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase();
+    return {
+      initials,
+      name: user.name
+    };
+  };
+
+  const userInfo = getUserDisplayInfo();
 
   const handleNavigation = (page: string) => {
     if (onNavigate) {
@@ -160,9 +179,9 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
             <button
               onClick={toggleTheme}
               className="p-3 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-500 hover:scale-110 hover:shadow-xl group border border-transparent hover:border-gray-200/50 dark:hover:border-gray-700/50"
-              title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              {isDark ? (
+              {theme === 'dark' ? (
                 <Sun className="h-6 w-6 text-yellow-500 group-hover:rotate-180 group-hover:scale-125 transition-transform duration-700" />
               ) : (
                 <Moon className="h-6 w-6 text-gray-600 dark:text-gray-300 group-hover:rotate-180 group-hover:scale-125 transition-transform duration-700" />
@@ -176,9 +195,9 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
                 className="flex items-center space-x-3 p-2 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-500 hover:scale-105 hover:shadow-xl group border border-transparent hover:border-gray-200/50 dark:hover:border-gray-700/50"
               >
                 <img
-                  src="https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face"
-                  alt="Profile"
-                  className="h-10 w-10 rounded-full object-cover ring-2 ring-white dark:ring-gray-700 group-hover:ring-primary-400 transition-all duration-300"
+                  src={user?.avatar || "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face"}
+                  alt={userInfo.name}
+                  className="h-10 w-10 rounded-full object-cover ring-2 ring-white dark:ring-gray-700 group-hover:ring-blue-400 transition-all duration-300"
                 />
                 <ChevronDown className={`h-4 w-4 text-gray-600 dark:text-gray-300 transition-transform duration-300 ${isProfileMenuOpen ? 'rotate-180' : ''}`} />
               </button>
@@ -187,8 +206,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
               {isProfileMenuOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-600 animate-fade-in-up z-50 backdrop-blur-xl">
                   <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-                    <p className="font-semibold text-gray-900 dark:text-gray-100">John Doe</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">john@example.com</p>
+                    <p className="font-semibold text-gray-900 dark:text-gray-100">{userInfo.name}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{user?.email}</p>
                   </div>
                   <div className="py-2">
                     <a
@@ -199,6 +218,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage = 'home', onNavigate }) => 
                       Profile
                     </a>
                     <button
+                      onClick={handleLogout}
                       className="flex items-center w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                     >
                       <LogOut className="h-4 w-4 mr-3" />
