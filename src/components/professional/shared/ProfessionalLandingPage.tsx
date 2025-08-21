@@ -6,12 +6,16 @@ import ProfessionalCalendar from '../landing/ProfessionalCalendar';
 import ProfessionalReviews from '../landing/ProfessionalReviews';
 import ProfessionalFooter from './ProfessionalFooter';
 
-const ProfessionalLandingPage: React.FC = () => {
+interface ProfessionalLandingPageProps {
+  onModuleClick?: (moduleName: string) => void;
+}
+
+const ProfessionalLandingPage: React.FC<ProfessionalLandingPageProps> = ({ onModuleClick }) => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <ProfessionalNavbar />
+      <ProfessionalNavbar onLogoClick={() => {}} showBackToLanding={false} isLandingPage={true} />
       <ProfessionalHero />
-      <ProfessionalModules />
+      <ProfessionalModules onModuleClick={onModuleClick} />
       <ProfessionalCalendar />
       <ProfessionalReviews />
       <ProfessionalFooter />

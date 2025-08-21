@@ -68,8 +68,8 @@ const ProfessionalModules: React.FC<ProfessionalModulesProps> = ({ onModuleClick
   ];
 
   const handleModuleClick = (module: typeof modules[0]) => {
+    setCurrentModule?.(module.moduleName);
     if (onModuleClick) {
-      setCurrentModule?.(module.moduleName);
       onModuleClick(module.moduleName);
     }
   };
