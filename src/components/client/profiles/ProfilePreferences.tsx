@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Settings, Globe, Clock, Bell, Eye, Heart, Star, Calendar, MapPin, Phone, Mail, Shield, Award, Crown, Trophy, Medal, Flame, Sparkles, Zap, Target, Gift, Rocket, Diamond, CheckCircle, AlertCircle, Info } from 'lucide-react';
+import { Settings, Globe, Clock, Bell, Eye, Heart, Star, Calendar, MapPin, Phone, Mail, Shield, Award, Crown, Trophy, Medal, Flame, Sparkles, Zap, Target, Gift, Rocket, Diamond, CheckCircle, AlertCircle, Info, MessageCircle, Edit, Activity } from 'lucide-react';
 
 const ProfilePreferences: React.FC = () => {
   const [preferences, setPreferences] = useState({
