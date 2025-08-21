@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Scissors, Clock, Tag, FileText, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Award, Heart, Star, Eye, Bookmark, Gift, Rocket, Diamond, Plus, Minus, CheckCircle, AlertCircle, Info, Lightbulb, Palette, Brush, Wand2, Users } from 'lucide-react';
+import { Scissors, Clock, Tag, FileText, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Award, Heart, Star, Eye, Bookmark, Gift, Rocket, Diamond, Plus, Minus, CheckCircle, AlertCircle, Info, Lightbulb, Palette, Brush, Wand2, Users, Settings } from 'lucide-react';
 
 interface ServiceData {
   name: string;
