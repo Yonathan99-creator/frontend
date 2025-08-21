@@ -20,19 +20,7 @@ interface Appointment {
   isRecurring?: boolean;
 }
 
-interface AppointmentListProps {
-  appointments: Appointment[];
-  searchTerm: string;
-  filterStatus: string;
-  sortBy: string;
-}
-
-const AppointmentList: React.FC<AppointmentListProps> = ({
-  appointments,
-  searchTerm,
-  filterStatus,
-  sortBy
-}) => {
+const AppointmentList: React.FC = () => {
   const [selectedAppointment, setSelectedAppointment] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
 
@@ -125,6 +113,8 @@ const AppointmentList: React.FC<AppointmentListProps> = ({
       isRecurring: false
     }
   ];
+
+  const filteredAppointments = sampleAppointments;
 
   const getStatusColor = (status: string) => {
     switch (status) {

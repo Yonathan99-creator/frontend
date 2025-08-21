@@ -1,23 +1,10 @@
 import React, { useState } from 'react';
 import { Search, Filter, Star, Calendar, User, TrendingUp, Eye, Settings, Download, Share2, Bell, Sparkles, Zap, Target, Award, BarChart3, Activity } from 'lucide-react';
 
-interface ReviewsFiltersProps {
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-  filterRating: string;
-  setFilterRating: (rating: string) => void;
-  sortBy: string;
-  setSortBy: (sort: string) => void;
-}
-
-const ReviewsFilters: React.FC<ReviewsFiltersProps> = ({
-  searchTerm,
-  setSearchTerm,
-  filterRating,
-  setFilterRating,
-  sortBy,
-  setSortBy
-}) => {
+const ReviewsFilters: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterRating, setFilterRating] = useState('all');
+  const [sortBy, setSortBy] = useState('newest');
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   const [dateRange, setDateRange] = useState('all');
   const [serviceType, setServiceType] = useState('all');

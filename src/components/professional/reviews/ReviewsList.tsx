@@ -17,17 +17,7 @@ interface Review {
   isVip?: boolean;
 }
 
-interface ReviewsListProps {
-  searchTerm: string;
-  filterRating: string;
-  sortBy: string;
-}
-
-const ReviewsList: React.FC<ReviewsListProps> = ({
-  searchTerm,
-  filterRating,
-  sortBy
-}) => {
+const ReviewsList: React.FC = () => {
   const [selectedReview, setSelectedReview] = useState<number | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
 

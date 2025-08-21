@@ -3,7 +3,7 @@ import { User, Settings, Calendar, Clock, Star, CreditCard, ArrowRight, Sparkles
 import { useApp } from '../../../contexts/AppContext';
 
 interface ProfessionalModulesProps {
-  onModuleClick?: (moduleName: string) => void;
+  onModuleClick?: (page: string) => void;
 }
 
 const ProfessionalModules: React.FC<ProfessionalModulesProps> = ({ onModuleClick }) => {

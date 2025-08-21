@@ -3,7 +3,7 @@ import { ThemeProvider } from '../../contexts/ThemeContext';
 import { AppProvider, useApp } from '../../contexts/AppContext';
 import { LoadingScreen } from '../shared';
 import ProfessionalNavbar from './shared/ProfessionalNavbar';
-import ProfessionalLandingPage from './shared/ProfessionalLandingPage';
+import ProfessionalLanding from './landing/ProfessionalLanding';
 import CalendarView from './calendar/CalendarView';
 import MyProfile from './profile/MyProfile';
 import MyServices from './services/MyServices';
@@ -112,7 +112,7 @@ const ProfessionalDashboardContent: React.FC = () => {
   if (showLanding) {
     return (
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-        <ProfessionalLandingPage onModuleClick={handleEnterDashboard} />
+        <ProfessionalLanding onNavigate={handleEnterDashboard} />
       </div>
     );
   }

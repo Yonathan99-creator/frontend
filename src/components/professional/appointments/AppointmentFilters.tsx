@@ -1,23 +1,10 @@
 import React, { useState } from 'react';
 import { Search, Filter, Calendar, Clock, User, Star, TrendingUp, CheckCircle, AlertCircle, XCircle, Eye, Settings, Download, Share2, Bell, Sparkles, Zap, Target, Award } from 'lucide-react';
 
-interface AppointmentFiltersProps {
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-  filterStatus: string;
-  setFilterStatus: (status: string) => void;
-  sortBy: string;
-  setSortBy: (sort: string) => void;
-}
-
-const AppointmentFilters: React.FC<AppointmentFiltersProps> = ({
-  searchTerm,
-  setSearchTerm,
-  filterStatus,
-  setFilterStatus,
-  sortBy,
-  setSortBy
-}) => {
+const AppointmentFilters: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState('all');
+  const [sortBy, setSortBy] = useState('newest');
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   const [dateRange, setDateRange] = useState('all');
   const [serviceType, setServiceType] = useState('all');

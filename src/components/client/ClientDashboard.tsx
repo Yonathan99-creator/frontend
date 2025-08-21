@@ -13,16 +13,18 @@ const ClientDashboardContent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showLanding, setShowLanding] = useState(true);
 
-  React.useEffect(() => {
-    // Simulate loading time for client dashboard
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2500);
+import { AuthProvider } from '../contexts/auth/AuthContext';
+import { ThemeProvider } from '../contexts/ThemeContext';
+import { AppProvider } from '../contexts/AppContext';
+import { LoadingScreen } from '../shared';
+import ClientNavbar from './shared/ClientNavbar';
+import ClientLanding from './landing/ClientLanding';
 
-    return () => clearTimeout(timer);
-  }, []);
+const ClientDashboardContent: React.FC = () => {
+  const { user } = useAuth();
+  const [showLanding, setShowLanding] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(true);
 
-  if (isLoading) {
     return (
       <LoadingScreen />
     );
@@ -393,19 +395,48 @@ const ClientDashboardContent: React.FC = () => {
                         ? `bg-gradient-to-r ${tab.color} text-white shadow-lg`
                         : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                     } animate-in slide-in-from-bottom-4 duration-1000`}
-                    style={{ animationDelay: `${index * 100 + 300}ms` }}
-                  >
+  React.useEffect(() => {
+    // Simulate loading time for client dashboard
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
                     <Icon className="w-6 h-6" />
-                    <span className="font-bold">{tab.label}</span>
-                  </button>
-                );
+    return () => clearTimeout(timer);
+  }, []);
               })}
-            </div>
-          </div>
+  if (isLoading) {
+    return <LoadingScreen />;
+  );
 
-          {/* Tab Content */}
-          <div className="animate-in slide-in-from-bottom-4 duration-1000 delay-400">
-            {renderTabContent()}
+  const handleEnterDashboard = (moduleName?: string) => {
+    setShowLanding(false);
+    if (moduleName) {
+      // Module will be set by the component that calls this
+    }
+  };
+
+  const handleBackToLanding = () => {
+    setShowLanding(true);
+  };
+
+  if (showLanding) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+        <ClientLanding onNavigate={handleEnterDashboard} />
+      </div>
+    );
+  }
+
+  // Here you would render the actual dashboard modules
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+      <ClientNavbar onLogoClick={handleBackToLanding} showBackToLanding={true} isLandingPage={false} />
+      <main className="pt-20 px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Dashboard content would go here */}
+          <div className="text-center py-20">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Client Dashboard</h2>
+            <p className="text-gray-600 dark:text-gray-400">Dashboard modules coming soon...</p>
           </div>
         </div>
       </main>

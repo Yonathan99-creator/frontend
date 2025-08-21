@@ -19,17 +19,7 @@ interface Service {
   tags?: string[];
 }
 
-interface ServicesListProps {
-  searchTerm: string;
-  filterCategory: string;
-  sortBy: string;
-}
-
-const ServicesList: React.FC<ServicesListProps> = ({
-  searchTerm,
-  filterCategory,
-  sortBy
-}) => {
+const ServicesList: React.FC = () => {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
