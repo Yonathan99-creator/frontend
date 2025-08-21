@@ -123,7 +123,7 @@ const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, sh
           {/* Navigation Items */}
           {!isLandingPage && (
             <div className="hidden lg:block">
-              <div className="ml-10 flex items-center space-x-2">
+              <div className="ml-10 flex items-center space-x-4">
                 {modules.map((module, index) => {
                   const Icon = module.icon;
                   const isActive = currentModule === module.name;
@@ -131,15 +131,17 @@ const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({ onLogoClick, sh
                     <button
                       key={module.name}
                       onClick={() => handleModuleChange(module.name)}
-                      className={`relative px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-500 hover:bg-white/60 dark:hover:bg-gray-800/60 hover:shadow-xl hover:scale-110 group animate-fade-in-up ${
+                      className={`relative px-8 py-4 rounded-2xl text-base font-semibold transition-all duration-500 hover:bg-white/60 dark:hover:bg-gray-800/60 hover:shadow-xl hover:scale-110 group animate-fade-in-up ${
                         isActive
                           ? 'text-blue-600 dark:text-blue-400 bg-white/60 dark:bg-gray-800/60'
                           : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
                       }`}
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
-                      <Icon className="h-4 w-4 inline mr-2 group-hover:scale-125 transition-transform duration-300" />
-                      {module.name}
+                      <div className="flex items-center space-x-3">
+                        <Icon className="h-5 w-5 group-hover:scale-125 transition-transform duration-300" />
+                        <span>{module.name}</span>
+                      </div>
                       {/* Active Indicator */}
                       {isActive && (
                         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-fade-in-up"></div>

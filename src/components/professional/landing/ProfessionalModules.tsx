@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, Settings, Calendar, Clock, Star, CreditCard, ArrowRight, Sparkles, TrendingUp, Shield, BarChart3 } from 'lucide-react';
+import { User, Settings, Calendar, Clock, Star, CreditCard, ArrowRight, Sparkles, TrendingUp, Shield, BarChart3, Scissors, MessageCircle } from 'lucide-react';
 import { useApp } from '../../../contexts/AppContext';
 
 interface ProfessionalModulesProps {
@@ -21,7 +21,7 @@ const ProfessionalModules: React.FC<ProfessionalModulesProps> = ({ onModuleClick
       features: ['Información personal', 'Certificaciones', 'Horarios de trabajo']
     },
     {
-      icon: Settings,
+      icon: Scissors,
       title: 'Mis Servicios',
       moduleName: 'My Services',
       description: 'Administra tus servicios y precios',
@@ -48,7 +48,7 @@ const ProfessionalModules: React.FC<ProfessionalModulesProps> = ({ onModuleClick
       features: ['Gestión completa', 'Estados de citas', 'Historial detallado']
     },
     {
-      icon: Star,
+      icon: MessageCircle,
       title: 'Mis Reseñas',
       moduleName: 'My Reviews',
       description: 'Monitorea la satisfacción de tus clientes',
