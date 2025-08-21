@@ -28,9 +28,11 @@ const ClientNavbar: React.FC<ClientNavbarProps> = ({ currentPage = 'home', onNav
   const navItems = [
     { name: 'Home', href: 'home', icon: Home },
     { name: 'Professionals', href: 'professionals', icon: User },
+    { name: 'Book Appointment', href: 'booking', icon: Calendar },
     { name: 'Payments', href: 'payments', icon: CreditCard },
     { name: 'Appointments', href: 'appointments', icon: Calendar },
     { name: 'Reviews', href: 'reviews', icon: Star },
+    { name: 'Profile', href: 'profile', icon: Settings }
   ];
 
   const notifications = [

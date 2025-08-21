@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, UserCheck, Calendar, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { Search, UserCheck, Calendar, CheckCircle, ArrowRight, Sparkles, Star, Clock, Shield } from 'lucide-react';
 
 const HowItWorks: React.FC = () => {
   const steps = [
@@ -7,7 +7,7 @@ const HowItWorks: React.FC = () => {
       icon: Search,
       title: 'Search & Discover',
       description: 'Browse through thousands of verified professionals across all industries and specialties.',
-      details: ['Advanced search filters', 'Verified professional profiles', 'Real-time availability'],
+      details: ['Advanced search filters', 'Verified professional profiles', 'Real-time availability', 'Instant messaging'],
       color: 'from-blue-500 to-cyan-500',
       bgGradient: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20',
       delay: 0
@@ -16,7 +16,7 @@ const HowItWorks: React.FC = () => {
       icon: UserCheck,
       title: 'Choose Your Professional',
       description: 'Select the perfect professional based on their expertise, reviews, and availability.',
-      details: ['Detailed professional profiles', 'Verified credentials', 'Client testimonials'],
+      details: ['Detailed professional profiles', 'Verified credentials', 'Client testimonials', 'Transparent pricing'],
       color: 'from-purple-500 to-pink-500',
       bgGradient: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20',
       delay: 200
@@ -25,7 +25,7 @@ const HowItWorks: React.FC = () => {
       icon: Calendar,
       title: 'Book Instantly',
       description: 'Schedule your appointment with just a few clicks. Choose your preferred time and date.',
-      details: ['One-click booking', 'Instant confirmation', 'Flexible scheduling'],
+      details: ['One-click booking', 'Instant confirmation', 'Flexible scheduling', 'Calendar integration'],
       color: 'from-green-500 to-teal-500',
       bgGradient: 'from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20',
       delay: 400
@@ -34,7 +34,7 @@ const HowItWorks: React.FC = () => {
       icon: CheckCircle,
       title: 'Meet & Review',
       description: 'Attend your appointment and share your experience to help other clients.',
-      details: ['Multiple meeting options', 'Secure payments', 'Share your experience'],
+      details: ['Multiple meeting options', 'Secure payments', 'Share your experience', 'Follow-up support'],
       color: 'from-orange-500 to-red-500',
       bgGradient: 'from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20',
       delay: 600
