@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Camera, Upload, Image, Video, Trash2, Eye, Star, Heart, Bookmark, Share2, Plus, X, CheckCircle, AlertCircle, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Award, Gift, Rocket, Diamond, Palette, Brush, Scissors, Wand2 } from 'lucide-react';
+import { Camera, Upload, Image, Video, Trash2, Eye, Star, Heart, Bookmark, Share2, Plus, X, CheckCircle, AlertCircle, Sparkles, Crown, Trophy, Medal, Flame, Zap, Target, Award, Gift, Rocket, Diamond, Palette, Brush, Scissors, Wand2, BarChart3 } from 'lucide-react';
 
 interface ServiceData {
   name: string;
