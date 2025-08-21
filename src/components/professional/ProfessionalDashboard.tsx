@@ -11,12 +11,14 @@ import MyAppointments from './appointments/MyAppointments';
 import MyReviews from './reviews/MyReviews';
 import MySubscription from './subscription/MySubscription';
 import AddServicePage from './add_service/AddServicePage';
+import PaymentPage from './payment/PaymentPage';
 
 const ProfessionalDashboardContent: React.FC = () => {
   const { currentModule } = useApp();
   const [showLanding, setShowLanding] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState(true);
   const [showAddService, setShowAddService] = React.useState(false);
+  const [showPayment, setShowPayment] = React.useState(false);
 
   React.useEffect(() => {
     // Simulate loading time for professional dashboard
@@ -33,6 +35,11 @@ const ProfessionalDashboardContent: React.FC = () => {
       if (window.location.hash === '#add-service') {
         setShowAddService(true);
         setShowLanding(false);
+        setShowPayment(false);
+      } else if (window.location.hash === '#payment') {
+        setShowPayment(true);
+        setShowLanding(false);
+        setShowAddService(false);
       }
     };
 
@@ -46,17 +53,38 @@ const ProfessionalDashboardContent: React.FC = () => {
     return <LoadingScreen />;
   }
 
+  if (showPayment) {
+    return (
+      <div className="min-h-screen">
+        <PaymentPage 
+          onBack={() => {
+            setShowPayment(false);
+            window.location.hash = '';
+          }}
+          onComplete={(paymentData) => {
+            console.log('Payment completed:', paymentData);
+            setShowPayment(false);
+            window.location.hash = '';
+            // Here you would typically process the payment and update subscription
+          }}
+        />
+      </div>
+    );
+  }
+
   if (showAddService) {
     return (
       <div className="min-h-screen">
         <AddServicePage 
           onBack={() => {
             setShowAddService(false);
+            setShowPayment(false);
             window.location.hash = '';
           }}
           onSave={(serviceData) => {
             console.log('Service created:', serviceData);
             setShowAddService(false);
+            setShowPayment(false);
             window.location.hash = '';
             // Here you would typically save to your backend
           }}
@@ -68,6 +96,7 @@ const ProfessionalDashboardContent: React.FC = () => {
   const handleEnterDashboard = (moduleName?: string) => {
     setShowLanding(false);
     setShowAddService(false);
+    setShowPayment(false);
     if (moduleName) {
       // Module will be set by the component that calls this
     }
@@ -76,6 +105,7 @@ const ProfessionalDashboardContent: React.FC = () => {
   const handleBackToLanding = () => {
     setShowLanding(true);
     setShowAddService(false);
+    setShowPayment(false);
     window.location.hash = '';
   };
 

@@ -96,7 +96,10 @@ const SubscriptionHeader: React.FC = () => {
           </div>
           
           <div className="flex flex-col space-y-3">
-            <button className="group flex items-center space-x-3 px-8 py-4 bg-white/20 dark:bg-black/30 backdrop-blur-sm rounded-2xl hover:bg-white/30 dark:hover:bg-black/40 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 animate-in slide-in-from-right-4 duration-1000 text-white border border-white/20">
+            <button 
+              onClick={() => window.location.hash = 'payment'}
+              className="group flex items-center space-x-3 px-8 py-4 bg-white/20 dark:bg-black/30 backdrop-blur-sm rounded-2xl hover:bg-white/30 dark:hover:bg-black/40 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 animate-in slide-in-from-right-4 duration-1000 text-white border border-white/20"
+            >
               <Settings className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
               <span className="font-bold text-lg">Manage Subscription</span>
             </button>
