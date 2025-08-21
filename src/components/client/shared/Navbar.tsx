@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, User, LogIn, Moon, Sun, Calendar, Menu, X, Bell, ChevronDown, Settings, LogOut, Home, Star, CreditCard } from 'lucide-react';
-import { useTheme } from '../../../../contexts/ThemeContext';
-import { useAuth } from '../../../../contexts/auth/AuthContext';
+import { useTheme } from '../../../contexts/ThemeContext';
+import { useAuth } from '../../../contexts/auth/AuthContext';
 
 interface NavbarProps {
   currentPage?: string;
