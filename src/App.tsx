@@ -1,6 +1,7 @@
 import React from 'react';
 import { AuthProvider, useAuth } from './contexts/auth/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import SecurityWrapper from './components/shared/SecurityWrapper';
 import LoginScreen from './components/auth/LoginScreen';
 import LoadingScreen from './components/shared/LoadingScreen';
 import ProfessionalDashboard from './components/professional/ProfessionalDashboard';
@@ -33,11 +34,13 @@ const AppContent: React.FC = () => {
 
 function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <AppContent />
-      </AuthProvider>
-    </ThemeProvider>
+    <SecurityWrapper>
+      <ThemeProvider>
+        <AuthProvider>
+          <AppContent />
+        </AuthProvider>
+      </ThemeProvider>
+    </SecurityWrapper>
   );
 }
 

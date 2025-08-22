@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { AuthContextType, User, LoginCredentials, UserRole } from '../../types/auth';
+import { obfuscateData, deobfuscateData, clearSensitiveData } from '../../utils/encryption';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -53,10 +54,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     // Check for existing session
-    const savedUser = localStorage.getItem('probooking_user');
+    const savedUser = localStorage.getItem('pb_u');
     if (savedUser) {
       try {
-        const userData = JSON.parse(savedUser);
+        const userData = JSON.parse(deobfuscateData(savedUser));
         // Re-hydrate Date objects from localStorage
         if (userData.createdAt) {
           userData.createdAt = new Date(userData.createdAt);
@@ -67,7 +68,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(userData);
         setIsAuthenticated(true);
       } catch (error) {
-        localStorage.removeItem('probooking_user');
+        localStorage.removeItem('pb_u');
       }
     }
     setIsLoading(false);
@@ -97,7 +98,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         
         setUser(userWithLastLogin);
         setIsAuthenticated(true);
-        localStorage.setItem('probooking_user', JSON.stringify(userWithLastLogin));
+        localStorage.setItem('pb_u', obfuscateData(JSON.stringify(userWithLastLogin)));
       } else {
         throw new Error('Invalid credentials');
       }
@@ -111,7 +112,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
-    localStorage.removeItem('probooking_user');
+    localStorage.removeItem('pb_u');
+    clearSensitiveData();
   };
 
   const clearError = () => {
