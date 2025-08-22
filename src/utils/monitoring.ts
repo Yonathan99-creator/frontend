@@ -1,4 +1,4 @@
-// Sistema de monitoreo y logging seguro
+// Secure monitoring and logging system
 
 interface SecurityEvent {
   type: 'dev_tools_attempt' | 'unauthorized_access' | 'suspicious_activity';
@@ -29,20 +29,20 @@ class SecurityMonitor {
         this.events = this.events.slice(-this.maxEvents);
       }
 
-      // En producción real, enviar a servidor de monitoreo
+      // In real production, send to monitoring server
       this.sendToServer(event);
     }
   }
 
   private sendToServer(event: SecurityEvent) {
-    // En producción real, implementar envío seguro al servidor
+    // In real production, implement secure sending to server
     if (import.meta.env.VITE_MONITORING_ENABLED === 'true') {
       // fetch('/api/security/log', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'application/json' },
       //   body: JSON.stringify(event)
       // }).catch(() => {
-      //   // Fallar silenciosamente para no exponer errores
+      //   // Fail silently to not expose errors
       // });
     }
   }
@@ -58,12 +58,12 @@ class SecurityMonitor {
 
 export const securityMonitor = new SecurityMonitor();
 
-// Función para reportar actividad sospechosa
+// Function to report suspicious activity
 export const reportSuspiciousActivity = (details: any) => {
   securityMonitor.logEvent('suspicious_activity', details);
 };
 
-// Función para reportar intentos de acceso a dev tools
+// Function to report dev tools access attempts
 export const reportDevToolsAttempt = () => {
   securityMonitor.logEvent('dev_tools_attempt', {
     screenSize: `${window.screen.width}x${window.screen.height}`,
@@ -72,7 +72,7 @@ export const reportDevToolsAttempt = () => {
   });
 };
 
-// Función para reportar acceso no autorizado
+// Function to report unauthorized access
 export const reportUnauthorizedAccess = (details: any) => {
   securityMonitor.logEvent('unauthorized_access', details);
 };

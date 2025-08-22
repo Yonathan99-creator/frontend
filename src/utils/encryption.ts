@@ -1,6 +1,6 @@
-// Utilidades de encriptación para datos sensibles
+// Encryption utilities for sensitive data
 
-// Función simple de ofuscación para datos locales
+// Simple obfuscation function for local data
 export const obfuscateData = (data: string): string => {
   if (import.meta.env.PROD) {
     return btoa(encodeURIComponent(data));
@@ -8,7 +8,7 @@ export const obfuscateData = (data: string): string => {
   return data;
 };
 
-// Función para desofuscar datos
+// Function to deobfuscate data
 export const deobfuscateData = (data: string): string => {
   if (import.meta.env.PROD) {
     try {
@@ -20,7 +20,7 @@ export const deobfuscateData = (data: string): string => {
   return data;
 };
 
-// Generar hash simple para verificación de integridad
+// Generate simple hash for integrity verification
 export const generateHash = (data: string): string => {
   let hash = 0;
   for (let i = 0; i < data.length; i++) {
@@ -31,15 +31,15 @@ export const generateHash = (data: string): string => {
   return hash.toString(36);
 };
 
-// Verificar integridad de datos
+// Verify data integrity
 export const verifyIntegrity = (data: string, hash: string): boolean => {
   return generateHash(data) === hash;
 };
 
-// Limpiar datos sensibles de la memoria
+// Clear sensitive data from memory
 export const clearSensitiveData = () => {
   if (import.meta.env.PROD) {
-    // Limpiar localStorage de datos temporales
+    // Clear localStorage of temporary data
     const keysToRemove = Object.keys(localStorage).filter(key => 
       key.includes('temp') || key.includes('cache') || key.includes('debug')
     );
@@ -48,18 +48,18 @@ export const clearSensitiveData = () => {
       localStorage.removeItem(key);
     });
 
-    // Limpiar sessionStorage
+    // Clear sessionStorage
     sessionStorage.clear();
   }
 };
 
-// Proteger URLs y endpoints
+// Protect URLs and endpoints
 export const protectEndpoints = () => {
   if (import.meta.env.PROD) {
-    // Interceptar fetch requests para ofuscar URLs
+    // Intercept fetch requests to obfuscate URLs
     const originalFetch = window.fetch;
     window.fetch = function(...args) {
-      // Log de seguridad sin exponer URLs reales
+      // Security log without exposing real URLs
       console.log('🔒 Secure request initiated');
       return originalFetch.apply(this, args);
     };

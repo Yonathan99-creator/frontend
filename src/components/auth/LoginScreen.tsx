@@ -19,8 +19,8 @@ const LoginScreen: React.FC = () => {
     {
       role: 'professional' as UserRole,
       title: 'Professional',
-      subtitle: 'Gestiona tu práctica',
-      description: 'Administra citas, clientes y servicios profesionales',
+      subtitle: 'Manage your practice',
+      description: 'Manage appointments, clients and professional services',
       icon: User,
       color: 'from-blue-500 to-cyan-600',
       bgColor: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20',
@@ -30,8 +30,8 @@ const LoginScreen: React.FC = () => {
     {
       role: 'client' as UserRole,
       title: 'Client',
-      subtitle: 'Reserva servicios',
-      description: 'Encuentra y reserva citas con profesionales',
+      subtitle: 'Book services',
+      description: 'Find and book appointments with professionals',
       icon: Calendar,
       color: 'from-green-500 to-emerald-600',
       bgColor: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20',
@@ -41,8 +41,8 @@ const LoginScreen: React.FC = () => {
     {
       role: 'superadmin' as UserRole,
       title: 'Super Admin',
-      subtitle: 'Administra el sistema',
-      description: 'Control total de la plataforma y usuarios',
+      subtitle: 'Manage the system',
+      description: 'Full control of platform and users',
       icon: Shield,
       color: 'from-purple-500 to-pink-600',
       bgColor: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20',
@@ -146,10 +146,10 @@ const LoginScreen: React.FC = () => {
             </div>
           </div>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Bienvenido de vuelta
+            Welcome Back
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            Selecciona tu tipo de cuenta para continuar
+            Select your account type to continue
           </p>
         </div>
 
@@ -157,7 +157,7 @@ const LoginScreen: React.FC = () => {
           {/* User Type Selection */}
           <div className="space-y-6 animate-in slide-in-from-left-4 duration-1000 delay-200">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
-              Tipo de Usuario
+              User Type
             </h3>
             
             <div className="space-y-4">
@@ -234,7 +234,7 @@ const LoginScreen: React.FC = () => {
                   <selectedUserType.icon className="w-10 h-10 text-white group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                  Iniciar Sesión como {selectedUserType.title}
+                  Sign In as {selectedUserType.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
                   {selectedUserType.subtitle}
@@ -261,6 +261,7 @@ const LoginScreen: React.FC = () => {
                           : 'border-gray-300 dark:border-gray-600'
                       }`}
                       placeholder="tu@email.com"
+                      placeholder="your@email.com"
                     />
                   </div>
                   {validationErrors.email && (
@@ -273,7 +274,7 @@ const LoginScreen: React.FC = () => {
                 {/* Password Field */}
                 <div>
                   <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
-                    Contraseña
+                    Password
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -320,7 +321,7 @@ const LoginScreen: React.FC = () => {
                   onClick={fillDemoCredentials}
                   className="w-full py-2 px-4 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 text-sm font-medium"
                 >
-                  Usar credenciales demo
+                  Use demo credentials
                 </button>
 
                 {/* Submit Button */}
@@ -332,11 +333,11 @@ const LoginScreen: React.FC = () => {
                   {isLoading ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      <span>Iniciando sesión...</span>
+                      <span>Signing in...</span>
                     </>
                   ) : (
                     <>
-                      <span>Iniciar Sesión</span>
+                      <span>Sign In</span>
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </>
                   )}
@@ -347,11 +348,11 @@ const LoginScreen: React.FC = () => {
               <div className="mt-6 p-4 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50">
                 <h4 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-2 flex items-center space-x-2">
                   <Zap className="w-4 h-4 text-yellow-500" />
-                  <span>Credenciales Demo</span>
+                  <span>Demo Credentials</span>
                 </h4>
                 <div className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
                   <p><strong>Email:</strong> {selectedUserType.demoEmail}</p>
-                  <p><strong>Contraseña:</strong> password123</p>
+                  <p><strong>Password:</strong> password123</p>
                 </div>
               </div>
             </div>
@@ -361,7 +362,7 @@ const LoginScreen: React.FC = () => {
         {/* Footer */}
         <div className="text-center mt-12 animate-in slide-in-from-bottom-4 duration-1000 delay-600">
           <p className="text-gray-500 dark:text-gray-400 text-sm">
-            © 2025 ProBooking. Plataforma profesional de gestión de citas.
+            © 2025 ProBooking. Professional appointment management platform.
           </p>
         </div>
       </div>

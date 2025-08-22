@@ -15,11 +15,11 @@ const MonthView: React.FC<MonthViewProps> = ({ currentDate, appointments = [] })
   const [viewMode, setViewMode] = useState<'calendar' | 'agenda'>('calendar');
 
   const monthNames = [
-    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
-  const dayNames = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   // Generate calendar days
   const calendarDays = useMemo(() => {
@@ -161,7 +161,7 @@ const MonthView: React.FC<MonthViewProps> = ({ currentDate, appointments = [] })
                   {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
                 </h2>
                 <p className="text-blue-100 text-lg">
-                  Vista mensual completa de tu agenda profesional
+                  Complete monthly view of your professional schedule
                 </p>
               </div>
             </div>
@@ -177,7 +177,7 @@ const MonthView: React.FC<MonthViewProps> = ({ currentDate, appointments = [] })
                       : 'text-white/70 hover:text-white hover:bg-white/20'
                   }`}
                 >
-                  Calendario
+                  Calendar
                 </button>
                 <button
                   onClick={() => setViewMode('agenda')}
@@ -196,11 +196,11 @@ const MonthView: React.FC<MonthViewProps> = ({ currentDate, appointments = [] })
           {/* Month Statistics */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {[
-              { label: 'Total Citas', value: monthStats.total.toString(), icon: Calendar, color: 'bg-white/20' },
-              { label: 'Confirmadas', value: monthStats.confirmed.toString(), icon: CheckCircle, color: 'bg-green-500/30' },
-              { label: 'Pendientes', value: monthStats.pending.toString(), icon: AlertCircle, color: 'bg-yellow-500/30' },
-              { label: 'Completadas', value: monthStats.completed.toString(), icon: Trophy, color: 'bg-blue-500/30' },
-              { label: 'Ingresos', value: `$${monthStats.revenue}`, icon: Award, color: 'bg-purple-500/30' }
+              { label: 'Total Appointments', value: monthStats.total.toString(), icon: Calendar, color: 'bg-white/20' },
+              { label: 'Confirmed', value: monthStats.confirmed.toString(), icon: CheckCircle, color: 'bg-green-500/30' },
+              { label: 'Pending', value: monthStats.pending.toString(), icon: AlertCircle, color: 'bg-yellow-500/30' },
+              { label: 'Completed', value: monthStats.completed.toString(), icon: Trophy, color: 'bg-blue-500/30' },
+              { label: 'Revenue', value: `$${monthStats.revenue}`, icon: Award, color: 'bg-purple-500/30' }
             ].map((stat, index) => {
               const Icon = stat.icon;
               return (
@@ -506,7 +506,7 @@ const MonthView: React.FC<MonthViewProps> = ({ currentDate, appointments = [] })
                       <Sparkles className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm text-orange-600 dark:text-orange-400 font-bold">Estado</p>
+                      <p className="text-sm text-orange-600 dark:text-orange-400 font-bold">Status</p>
                       <p className="font-bold text-gray-900 dark:text-white text-lg capitalize">{selectedAppointment.status}</p>
                     </div>
                   </div>
@@ -517,7 +517,7 @@ const MonthView: React.FC<MonthViewProps> = ({ currentDate, appointments = [] })
                         <MapPin className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <p className="text-sm text-indigo-600 dark:text-indigo-400 font-bold">Ubicación</p>
+                        <p className="text-sm text-indigo-600 dark:text-indigo-400 font-bold">Location</p>
                         <p className="font-medium text-gray-900 dark:text-white">{selectedAppointment.location}</p>
                       </div>
                     </div>
@@ -528,7 +528,7 @@ const MonthView: React.FC<MonthViewProps> = ({ currentDate, appointments = [] })
                       <Award className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm text-yellow-600 dark:text-yellow-400 font-bold">Precio</p>
+                      <p className="text-sm text-yellow-600 dark:text-yellow-400 font-bold">Price</p>
                       <p className="font-bold text-gray-900 dark:text-white text-2xl">${selectedAppointment.price || 0}</p>
                     </div>
                   </div>
@@ -540,7 +540,7 @@ const MonthView: React.FC<MonthViewProps> = ({ currentDate, appointments = [] })
                   <div className="flex items-start space-x-3">
                     <Target className="w-6 h-6 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="font-bold text-gray-900 dark:text-white mb-2">Notas</h4>
+                      <h4 className="font-bold text-gray-900 dark:text-white mb-2">Notes</h4>
                       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{selectedAppointment.notes}</p>
                     </div>
                   </div>
@@ -551,19 +551,19 @@ const MonthView: React.FC<MonthViewProps> = ({ currentDate, appointments = [] })
               <div className="flex flex-wrap gap-3">
                 <button className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-2xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-medium">
                   <Eye className="w-5 h-5" />
-                  <span>Ver Detalles</span>
+                  <span>View Details</span>
                 </button>
                 <button className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-medium">
                   <Edit className="w-5 h-5" />
-                  <span>Editar</span>
+                  <span>Edit</span>
                 </button>
                 <button className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-2xl hover:from-purple-600 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-medium">
                   <MessageSquare className="w-5 h-5" />
-                  <span>Mensaje</span>
+                  <span>Message</span>
                 </button>
                 <button className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-2xl hover:from-orange-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-medium">
                   <Video className="w-5 h-5" />
-                  <span>Videollamada</span>
+                  <span>Video Call</span>
                 </button>
               </div>
             </div>
@@ -576,27 +576,27 @@ const MonthView: React.FC<MonthViewProps> = ({ currentDate, appointments = [] })
         <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
           <div className="flex items-center space-x-2">
             <div className="w-4 h-4 bg-blue-500 rounded-full shadow-lg animate-ping"></div>
-            <span className="text-gray-600 dark:text-gray-400 font-medium">Hoy</span>
+            <span className="text-gray-600 dark:text-gray-400 font-medium">Today</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-4 h-4 bg-green-500 rounded-full shadow-lg"></div>
-            <span className="text-gray-600 dark:text-gray-400 font-medium">Confirmada</span>
+            <span className="text-gray-600 dark:text-gray-400 font-medium">Confirmed</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-4 h-4 bg-yellow-500 rounded-full shadow-lg"></div>
-            <span className="text-gray-600 dark:text-gray-400 font-medium">Pendiente</span>
+            <span className="text-gray-600 dark:text-gray-400 font-medium">Pending</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-4 h-4 bg-blue-500 rounded-full shadow-lg"></div>
-            <span className="text-gray-600 dark:text-gray-400 font-medium">Completada</span>
+            <span className="text-gray-600 dark:text-gray-400 font-medium">Completed</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-4 h-4 bg-red-500 rounded-full shadow-lg"></div>
-            <span className="text-gray-600 dark:text-gray-400 font-medium">Cancelada</span>
+            <span className="text-gray-600 dark:text-gray-400 font-medium">Cancelled</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-4 h-4 bg-purple-500 rounded-full shadow-lg"></div>
-            <span className="text-gray-600 dark:text-gray-400 font-medium">Seleccionado</span>
+            <span className="text-gray-600 dark:text-gray-400 font-medium">Selected</span>
           </div>
         </div>
       </div>

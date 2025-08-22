@@ -1,15 +1,15 @@
-// Utilidades de seguridad para proteger la aplicación
+// Security utilities to protect the application
 
-// Deshabilitar herramientas de desarrollo en producción
+// Disable development tools in production
 export const disableDevTools = () => {
   if (import.meta.env.PROD) {
-    // Deshabilitar clic derecho
+    // Disable right click
     document.addEventListener('contextmenu', (e) => {
       e.preventDefault();
       return false;
     });
 
-    // Deshabilitar teclas de desarrollo
+    // Disable development keys
     document.addEventListener('keydown', (e) => {
       // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
       if (
@@ -22,7 +22,7 @@ export const disableDevTools = () => {
       }
     });
 
-    // Detectar si las herramientas de desarrollo están abiertas
+    // Detect if development tools are open
     let devtools = {
       open: false,
       orientation: null as string | null
@@ -37,7 +37,7 @@ export const disableDevTools = () => {
       ) {
         if (!devtools.open) {
           devtools.open = true;
-          // Redirigir o mostrar mensaje de advertencia
+          // Redirect or show warning message
           console.clear();
           document.body.innerHTML = `
             <div style="
@@ -67,14 +67,14 @@ export const disableDevTools = () => {
                   font-size: 2rem;
                   font-weight: bold;
                   margin-bottom: 1rem;
-                ">🔒 Acceso Restringido</h1>
+                ">🔒 Restricted Access</h1>
                 <p style="
                   color: #6b7280;
                   font-size: 1.1rem;
                   line-height: 1.6;
                   margin-bottom: 2rem;
                 ">
-                  Esta aplicación está protegida. El acceso a las herramientas de desarrollo no está permitido.
+                  This application is protected. Access to development tools is not permitted.
                 </p>
                 <button onclick="window.location.reload()" style="
                   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -86,7 +86,7 @@ export const disableDevTools = () => {
                   cursor: pointer;
                   font-size: 1rem;
                 ">
-                  Recargar Página
+                  Reload Page
                 </button>
               </div>
             </div>
@@ -99,14 +99,14 @@ export const disableDevTools = () => {
   }
 };
 
-// Ofuscar código JavaScript crítico
+// Obfuscate critical JavaScript code
 export const obfuscateCode = () => {
-  // Eliminar referencias a archivos fuente
+  // Remove references to source files
   if (import.meta.env.PROD) {
-    // Limpiar stack traces
+    // Clean stack traces
     Error.stackTraceLimit = 0;
     
-    // Sobrescribir console methods
+    // Override console methods
     const noop = () => {};
     console.log = noop;
     console.warn = noop;
@@ -117,28 +117,28 @@ export const obfuscateCode = () => {
   }
 };
 
-// Proteger contra debugging
+// Protect against debugging
 export const antiDebug = () => {
   if (import.meta.env.PROD) {
-    // Detectar debugger
+    // Detect debugger
     let startTime = performance.now();
     debugger;
     let endTime = performance.now();
     
     if (endTime - startTime > 100) {
-      // Debugger detectado
+      // Debugger detected
       window.location.href = 'about:blank';
     }
 
-    // Ejecutar cada 1 segundo
+    // Execute every 1 second
     setTimeout(antiDebug, 1000);
   }
 };
 
-// Proteger variables globales importantes
+// Protect important global variables
 export const protectGlobals = () => {
   if (import.meta.env.PROD) {
-    // Proteger window object
+    // Protect window object
     Object.defineProperty(window, 'console', {
       get() {
         throw new Error('Access denied');
@@ -150,7 +150,7 @@ export const protectGlobals = () => {
   }
 };
 
-// Detectar herramientas de desarrollo avanzadas
+// Detect advanced development tools
 export const detectDevTools = () => {
   if (import.meta.env.PROD) {
     let element = new Image();
@@ -173,10 +173,10 @@ export const detectDevTools = () => {
   }
 };
 
-// Limpiar datos sensibles del DOM
+// Clean sensitive data from DOM
 export const cleanupDOM = () => {
   if (import.meta.env.PROD) {
-    // Eliminar atributos que puedan revelar información
+    // Remove attributes that might reveal information
     const elements = document.querySelectorAll('*');
     elements.forEach(el => {
       el.removeAttribute('data-testid');
@@ -184,7 +184,7 @@ export const cleanupDOM = () => {
       el.removeAttribute('data-qa');
     });
 
-    // Eliminar comentarios HTML
+    // Remove HTML comments
     const walker = document.createTreeWalker(
       document.body,
       NodeFilter.SHOW_COMMENT,
@@ -203,7 +203,7 @@ export const cleanupDOM = () => {
   }
 };
 
-// Función principal para inicializar todas las protecciones
+// Main function to initialize all protections
 export const initializeSecurity = () => {
   if (import.meta.env.PROD) {
     disableDevTools();
@@ -213,9 +213,9 @@ export const initializeSecurity = () => {
     detectDevTools();
     cleanupDOM();
     
-    // Mensaje de advertencia en consola
-    console.log('%c🔒 SISTEMA PROTEGIDO', 'color: red; font-size: 20px; font-weight: bold;');
-    console.log('%cEsta aplicación está protegida contra ingeniería inversa.', 'color: orange; font-size: 14px;');
-    console.log('%cEl acceso no autorizado está prohibido.', 'color: red; font-size: 14px;');
+    // Warning message in console
+    console.log('%c🔒 PROTECTED SYSTEM', 'color: red; font-size: 20px; font-weight: bold;');
+    console.log('%cThis application is protected against reverse engineering.', 'color: orange; font-size: 14px;');
+    console.log('%cUnauthorized access is prohibited.', 'color: red; font-size: 14px;');
   }
 };

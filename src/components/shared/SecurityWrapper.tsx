@@ -65,43 +65,43 @@ const SecurityWrapper: React.FC<SecurityWrapperProps> = ({ children }) => {
   // Pantalla de bloqueo de seguridad
   if (!isSecure) {
     return (
-      <div className="fixed inset-0 bg-gradient-to-br from-red-600 via-purple-700 to-blue-800 flex items-center justify-center z-[9999]">
+                <h3 className="font-bold text-gray-900 mb-3">This application is protected by:</h3>
         <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-12 text-center max-w-2xl mx-4 shadow-2xl border border-white/20">
           <div className="w-24 h-24 bg-gradient-to-r from-red-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse">
             <Shield className="w-12 h-12 text-white" />
-          </div>
+                    <span>Obfuscated and minified code</span>
           
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             🔒 Acceso Denegado
-          </h1>
+                    <span>Anti-debugging protection</span>
           
           <div className="space-y-4 mb-8">
             <div className="flex items-center justify-center space-x-3 bg-red-50 p-4 rounded-2xl">
-              <AlertTriangle className="w-6 h-6 text-red-600" />
+                    <span>Development tools monitoring</span>
               <p className="text-red-800 font-semibold">
                 Se ha detectado un intento de acceso no autorizado
               </p>
-            </div>
+                    <span>Reverse engineering detection</span>
             
             <div className="bg-gray-50 p-6 rounded-2xl">
-              <h3 className="font-bold text-gray-900 mb-3">Esta aplicación está protegida por:</h3>
+              🔒 Access Denied
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
                 <div className="flex items-center space-x-2">
                   <Lock className="w-4 h-4 text-blue-600" />
                   <span>Código ofuscado y minificado</span>
-                </div>
+                Please use the application normally without attempting to access the source code.
                 <div className="flex items-center space-x-2">
                   <Shield className="w-4 h-4 text-green-600" />
                   <span>Protección anti-debugging</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Eye className="w-4 h-4 text-purple-600" />
-                  <span>Monitoreo de herramientas de desarrollo</span>
+                Reload Application
                 </div>
                 <div className="flex items-center space-x-2">
                   <AlertTriangle className="w-4 h-4 text-orange-600" />
                   <span>Detección de ingeniería inversa</span>
-                </div>
+              <p>Session ID: {Math.random().toString(36).substr(2, 9)}</p>
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@ const SecurityWrapper: React.FC<SecurityWrapperProps> = ({ children }) => {
               onClick={() => window.location.reload()}
               className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              Recargar Aplicación
+                  An unauthorized access attempt has been detected
             </button>
           </div>
           

@@ -10,34 +10,34 @@ const ProfessionalCalendar: React.FC = () => {
     {
       id: 1,
       time: '09:00',
-      client: 'María González',
-      service: 'Consulta General',
+      client: 'Maria Gonzalez',
+      service: 'General Consultation',
       duration: '60 min',
-      location: 'Consultorio 1'
+      location: 'Office 1'
     },
     {
       id: 2,
       time: '11:30',
       client: 'Carlos Rivera',
-      service: 'Revisión de Rutina',
+      service: 'Routine Check-up',
       duration: '45 min',
-      location: 'Consultorio 2'
+      location: 'Office 2'
     },
     {
       id: 3,
       time: '14:00',
-      client: 'Ana Martínez',
-      service: 'Terapia Especializada',
+      client: 'Ana Martinez',
+      service: 'Specialized Therapy',
       duration: '90 min',
-      location: 'Sala de Terapia'
+      location: 'Therapy Room'
     },
     {
       id: 4,
       time: '16:30',
-      client: 'Roberto López',
-      service: 'Consulta de Seguimiento',
+      client: 'Roberto Lopez',
+      service: 'Follow-up Consultation',
       duration: '30 min',
-      location: 'Consultorio 1'
+      location: 'Office 1'
     }
   ];
 
@@ -121,10 +121,10 @@ const ProfessionalCalendar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Mi Calendario
+            My Calendar
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            {viewMode === 'day' ? 'Vista de citas para el día seleccionado' : 'Selecciona un día del mes'} - Integración con Google Calendar
+            {viewMode === 'day' ? 'Appointment view for selected day' : 'Select a day of the month'} - Google Calendar Integration
           </p>
         </div>
 
@@ -143,7 +143,7 @@ const ProfessionalCalendar: React.FC = () => {
                         : 'text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-gray-700/50'
                     }`}
                   >
-                    Día
+                    Day
                   </button>
                   <button
                     onClick={() => setViewMode('month')}
@@ -153,7 +153,7 @@ const ProfessionalCalendar: React.FC = () => {
                         : 'text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-gray-700/50'
                     }`}
                   >
-                    Mes
+                    Month
                   </button>
                 </div>
               </div>
@@ -189,7 +189,7 @@ const ProfessionalCalendar: React.FC = () => {
                     </span>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-300">
-                    {appointments.length} citas programadas
+                    {appointments.length} scheduled appointments
                   </p>
                 </div>
               ) : (
@@ -235,19 +235,19 @@ const ProfessionalCalendar: React.FC = () => {
               {viewMode === 'day' && (
                 <div className="bg-white/60 dark:bg-gray-800/60 rounded-lg p-4">
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                    Resumen del día
+                    Day Summary
                   </h4>
                   <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                     <div className="flex justify-between">
-                      <span>Total de citas:</span>
+                      <span>Total appointments:</span>
                       <span className="font-medium">{appointments.length}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Tiempo ocupado:</span>
-                      <span className="font-medium">4.5 horas</span>
+                      <span>Busy time:</span>
+                      <span className="font-medium">4.5 hours</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Próxima cita:</span>
+                      <span>Next appointment:</span>
                       <span className="font-medium">09:00</span>
                     </div>
                   </div>
@@ -262,23 +262,23 @@ const ProfessionalCalendar: React.FC = () => {
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 text-center">
                 <CalendarIcon className="h-24 w-24 text-gray-300 dark:text-gray-600 mx-auto mb-6" />
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  Selecciona un día
+                  Select a day
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  Haz clic en cualquier día del calendario para ver las citas programadas para esa fecha.
+                  Click on any day in the calendar to see scheduled appointments for that date.
                 </p>
                 <div className="flex items-center justify-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
                   <div className="flex items-center space-x-2">
                     <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span>Hoy</span>
+                    <span>Today</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                    <span>Seleccionado</span>
+                    <span>Selected</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                    <span>Con citas</span>
+                    <span>With appointments</span>
                   </div>
                 </div>
               </div>
@@ -339,10 +339,10 @@ const ProfessionalCalendar: React.FC = () => {
 
                       <div className="mt-4 flex space-x-2">
                         <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-sm font-medium">
-                          Ver Detalles
+                          View Details
                         </button>
                         <button className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors duration-200 text-sm font-medium">
-                          Reagendar
+                          Reschedule
                         </button>
                       </div>
                     </div>
@@ -351,7 +351,7 @@ const ProfessionalCalendar: React.FC = () => {
 
                 <div className="mt-8 text-center">
                   <button className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105">
-                    Ver Calendario Completo
+                    View Full Calendar
                   </button>
                 </div>
               </div>

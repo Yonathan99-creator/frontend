@@ -1,6 +1,6 @@
-// Protección adicional del código fuente
+// Additional source code protection
 
-// Ofuscar strings importantes
+// Obfuscate important strings
 export const obfuscateString = (str: string): string => {
   if (import.meta.env.PROD) {
     return str.split('').map(char => 
@@ -10,7 +10,7 @@ export const obfuscateString = (str: string): string => {
   return str;
 };
 
-// Desofuscar strings
+// Deobfuscate strings
 export const deobfuscateString = (str: string): string => {
   if (import.meta.env.PROD) {
     return str.split('').map(char => 
@@ -20,12 +20,12 @@ export const deobfuscateString = (str: string): string => {
   return str;
 };
 
-// Proteger funciones críticas
+// Protect critical functions
 export const protectFunction = (fn: Function): Function => {
   if (import.meta.env.PROD) {
     return function(...args: any[]) {
       try {
-        // Verificar que no estamos en debugging
+        // Verify we're not in debugging
         let start = performance.now();
         debugger;
         let end = performance.now();
@@ -36,7 +36,7 @@ export const protectFunction = (fn: Function): Function => {
         
         return fn.apply(this, args);
       } catch (error) {
-        // Fallar silenciosamente o redirigir
+        // Fail silently or redirect
         window.location.href = 'about:blank';
         return null;
       }
@@ -45,7 +45,7 @@ export const protectFunction = (fn: Function): Function => {
   return fn;
 };
 
-// Crear proxy para objetos sensibles
+// Create proxy for sensitive objects
 export const createSecureProxy = <T extends object>(obj: T): T => {
   if (import.meta.env.PROD) {
     return new Proxy(obj, {
@@ -69,13 +69,13 @@ export const createSecureProxy = <T extends object>(obj: T): T => {
   return obj;
 };
 
-// Verificar integridad del DOM
+// Verify DOM integrity
 export const verifyDOMIntegrity = () => {
   if (import.meta.env.PROD) {
     const scripts = document.querySelectorAll('script');
     scripts.forEach(script => {
       if (script.src && !script.src.includes(window.location.origin)) {
-        // Script externo detectado
+        // External script detected
         script.remove();
         console.warn('External script removed for security');
       }
@@ -83,7 +83,7 @@ export const verifyDOMIntegrity = () => {
   }
 };
 
-// Proteger contra inyección de código
+// Protect against code injection
 export const sanitizeInput = (input: string): string => {
   if (import.meta.env.PROD) {
     return input
@@ -96,19 +96,19 @@ export const sanitizeInput = (input: string): string => {
   return input;
 };
 
-// Inicializar todas las protecciones de código
+// Initialize all code protections
 export const initializeCodeProtection = () => {
   if (import.meta.env.PROD) {
-    // Verificar integridad del DOM cada 5 segundos
+    // Verify DOM integrity every 5 seconds
     setInterval(verifyDOMIntegrity, 5000);
     
-    // Proteger endpoints
-    // protectEndpoints(); // Comentado para evitar interferir con la funcionalidad normal
+    // Protect endpoints
+    // protectEndpoints(); // Commented to avoid interfering with normal functionality
     
-    // Limpiar datos sensibles al cerrar
+    // Clean sensitive data on close
     window.addEventListener('beforeunload', clearSensitiveData);
     
-    // Proteger contra modificaciones del DOM
+    // Protect against DOM modifications
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === 'childList') {

@@ -71,7 +71,7 @@ const DayView: React.FC<DayViewProps> = ({ currentDate, appointments = [] }) => 
             <div>
               <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 {currentDate.toLocaleDateString('es-ES', { 
-                  weekday: 'long',
+                  weekday: 'long', 
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'
@@ -79,12 +79,12 @@ const DayView: React.FC<DayViewProps> = ({ currentDate, appointments = [] }) => 
               </h3>
               <div className="flex items-center space-x-4">
                 <p className="text-gray-600 dark:text-gray-400 text-lg">
-                  {dayAppointments.length} citas programadas
+                  {dayAppointments.length} scheduled appointments
                 </p>
                 {isToday && (
                   <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg animate-pulse">
                     <div className="w-2 h-2 bg-white rounded-full mr-2 animate-ping"></div>
-                    Hoy
+                    Today
                   </span>
                 )}
               </div>
@@ -94,9 +94,9 @@ const DayView: React.FC<DayViewProps> = ({ currentDate, appointments = [] }) => 
           {/* Day Stats */}
           <div className="grid grid-cols-3 gap-4">
             {[
-              { label: 'Citas', value: dayAppointments.length.toString(), icon: CalendarIcon, color: 'from-blue-500 to-cyan-600' },
-              { label: 'Horas', value: `${Math.round(dayAppointments.reduce((acc, apt) => acc + (apt.endTime.getTime() - apt.startTime.getTime()) / (1000 * 60 * 60), 0))}h`, icon: Clock, color: 'from-green-500 to-emerald-600' },
-              { label: 'Ingresos', value: `$${dayAppointments.reduce((acc, apt) => acc + (apt.price || 0), 0)}`, icon: Award, color: 'from-purple-500 to-pink-600' }
+              { label: 'Appointments', value: dayAppointments.length.toString(), icon: CalendarIcon, color: 'from-blue-500 to-cyan-600' },
+              { label: 'Hours', value: `${Math.round(dayAppointments.reduce((acc, apt) => acc + (apt.endTime.getTime() - apt.startTime.getTime()) / (1000 * 60 * 60), 0))}h`, icon: Clock, color: 'from-green-500 to-emerald-600' },
+              { label: 'Revenue', value: `$${dayAppointments.reduce((acc, apt) => acc + (apt.price || 0), 0)}`, icon: Award, color: 'from-purple-500 to-pink-600' }
             ].map((stat, index) => {
               const Icon = stat.icon;
               return (
@@ -226,7 +226,7 @@ const DayView: React.FC<DayViewProps> = ({ currentDate, appointments = [] }) => 
                                   <User className="w-6 h-6 text-white" />
                                 </div>
                                 <div>
-                                  <p className="text-xs text-blue-600 dark:text-blue-400 font-bold">Cliente</p>
+                                  <p className="text-xs text-blue-600 dark:text-blue-400 font-bold">Client</p>
                                   <p className="font-bold text-gray-900 dark:text-white text-lg">{appointment.clientName}</p>
                                 </div>
                               </div>
@@ -236,7 +236,7 @@ const DayView: React.FC<DayViewProps> = ({ currentDate, appointments = [] }) => 
                                   <Clock className="w-6 h-6 text-white" />
                                 </div>
                                 <div>
-                                  <p className="text-xs text-purple-600 dark:text-purple-400 font-bold">Duración</p>
+                                  <p className="text-xs text-purple-600 dark:text-purple-400 font-bold">Duration</p>
                                   <p className="font-bold text-gray-900 dark:text-white text-lg">
                                     {appointment.startTime.toLocaleTimeString('es-ES', {
                                       hour: '2-digit',
@@ -256,7 +256,7 @@ const DayView: React.FC<DayViewProps> = ({ currentDate, appointments = [] }) => 
                                   <Sparkles className="w-6 h-6 text-white" />
                                 </div>
                                 <div>
-                                  <p className="text-xs text-green-600 dark:text-green-400 font-bold">Servicio</p>
+                                  <p className="text-xs text-green-600 dark:text-green-400 font-bold">Service</p>
                                   <p className="font-bold text-gray-900 dark:text-white text-lg">{appointment.service}</p>
                                 </div>
                               </div>
@@ -267,7 +267,7 @@ const DayView: React.FC<DayViewProps> = ({ currentDate, appointments = [] }) => 
                                     <Phone className="w-6 h-6 text-white" />
                                   </div>
                                   <div>
-                                    <p className="text-xs text-orange-600 dark:text-orange-400 font-bold">Teléfono</p>
+                                    <p className="text-xs text-orange-600 dark:text-orange-400 font-bold">Phone</p>
                                     <p className="font-bold text-gray-900 dark:text-white text-lg">{appointment.clientPhone}</p>
                                   </div>
                                 </div>
@@ -291,7 +291,7 @@ const DayView: React.FC<DayViewProps> = ({ currentDate, appointments = [] }) => 
                                     <MapPin className="w-6 h-6 text-white" />
                                   </div>
                                   <div>
-                                    <p className="text-xs text-pink-600 dark:text-pink-400 font-bold">Ubicación</p>
+                                    <p className="text-xs text-pink-600 dark:text-pink-400 font-bold">Location</p>
                                     <p className="font-bold text-gray-900 dark:text-white text-lg">{appointment.location}</p>
                                   </div>
                                 </div>
@@ -304,7 +304,7 @@ const DayView: React.FC<DayViewProps> = ({ currentDate, appointments = [] }) => 
                               <div className="flex items-start space-x-3">
                                 <Target className="w-5 h-5 text-yellow-600 dark:text-yellow-400 mt-0.5 flex-shrink-0" />
                                 <div>
-                                  <p className="text-sm font-bold text-yellow-600 dark:text-yellow-400 mb-1">Notas</p>
+                                  <p className="text-sm font-bold text-yellow-600 dark:text-yellow-400 mb-1">Notes</p>
                                   <p className="text-sm text-yellow-800 dark:text-yellow-200">{appointment.notes}</p>
                                 </div>
                               </div>
@@ -315,15 +315,15 @@ const DayView: React.FC<DayViewProps> = ({ currentDate, appointments = [] }) => 
                             <div className="flex space-x-3">
                               <button className="flex items-center space-x-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-all duration-300 hover:scale-105 font-medium shadow-sm hover:shadow-md">
                                 <Eye className="w-4 h-4" />
-                                <span>Ver Detalles</span>
+                                <span>View Details</span>
                               </button>
                               <button className="flex items-center space-x-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-xl hover:bg-green-200 dark:hover:bg-green-900/50 transition-all duration-300 hover:scale-105 font-medium shadow-sm hover:shadow-md">
                                 <Edit className="w-4 h-4" />
-                                <span>Editar</span>
+                                <span>Edit</span>
                               </button>
                               <button className="flex items-center space-x-2 px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-all duration-300 hover:scale-105 font-medium shadow-sm hover:shadow-md">
                                 <MessageSquare className="w-4 h-4" />
-                                <span>Mensaje</span>
+                                <span>Message</span>
                               </button>
                             </div>
                             
@@ -349,8 +349,8 @@ const DayView: React.FC<DayViewProps> = ({ currentDate, appointments = [] }) => 
                       <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-blue-100 group-hover:to-purple-100 dark:group-hover:from-blue-800 dark:group-hover:to-purple-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110">
                         <Plus className="w-8 h-8 text-gray-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300" />
                       </div>
-                      <span className="text-lg font-bold group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300">Horario Disponible</span>
-                      <p className="text-sm mt-1 group-hover:text-blue-400 dark:group-hover:text-blue-300 transition-colors duration-300">Haz clic para agendar una cita</p>
+                      <span className="text-lg font-bold group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300">Available Time</span>
+                      <p className="text-sm mt-1 group-hover:text-blue-400 dark:group-hover:text-blue-300 transition-colors duration-300">Click to schedule an appointment</p>
                     </div>
                   </div>
                 )}

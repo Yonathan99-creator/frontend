@@ -3,10 +3,10 @@ import { Calendar, Users, Clock, TrendingUp, BarChart3 } from 'lucide-react';
 
 const ProfessionalHero: React.FC = () => {
   const stats = [
-    { icon: Users, label: 'Clientes Activos', value: '2,847' },
-    { icon: Calendar, label: 'Citas Este Mes', value: '342' },
-    { icon: Clock, label: 'Horas Trabajadas', value: '1,680' },
-    { icon: TrendingUp, label: 'Crecimiento', value: '+24%' },
+    { icon: Users, label: 'Active Clients', value: '2,847' },
+    { icon: Calendar, label: 'Appointments This Month', value: '342' },
+    { icon: Clock, label: 'Hours Worked', value: '1,680' },
+    { icon: TrendingUp, label: 'Growth', value: '+24%' },
   ];
 
   return (
@@ -14,14 +14,14 @@ const ProfessionalHero: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 animate-in slide-in-from-bottom-4 duration-1000">
-            Gestiona tu práctica
+            Manage your practice
             <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              profesional
+              professionally
             </span>
           </h1>
           
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto animate-in slide-in-from-bottom-4 duration-1000 delay-200">
-            La plataforma integral que necesitas para administrar citas, clientes y hacer crecer tu negocio de manera eficiente y profesional.
+            The comprehensive platform you need to manage appointments, clients and grow your business efficiently and professionally.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
@@ -46,7 +46,7 @@ const ProfessionalHero: React.FC = () => {
 
           <div className="animate-in slide-in-from-bottom-4 duration-1000 delay-1000">
             <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-xl transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-              Comenzar Ahora
+              Get Started Now
             </button>
           </div>
         </div>

@@ -5,71 +5,71 @@ const ProfessionalReviews: React.FC = () => {
   const reviews = [
     {
       id: 1,
-      name: 'María González',
-      role: 'Estilista Profesional',
+      name: 'Maria Gonzalez',
+      role: 'Professional Stylist',
       avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
       rating: 5,
-      comment: 'ProBooking ha transformado completamente mi negocio. La gestión de citas es increíblemente fácil y mis clientes están encantados con el sistema de reservas.',
+      comment: 'ProBooking has completely transformed my business. Appointment management is incredibly easy and my clients are delighted with the booking system.',
       date: '2024-01-15',
-      service: 'Plan Professional'
+      service: 'Professional Plan'
     },
     {
       id: 2,
       name: 'Carlos Rivera',
-      role: 'Fisioterapeuta',
+      role: 'Physiotherapist',
       avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
       rating: 5,
-      comment: 'La integración con Google Calendar y las notificaciones automáticas me han ahorrado horas de trabajo administrativo. Altamente recomendado.',
+      comment: 'The Google Calendar integration and automatic notifications have saved me hours of administrative work. Highly recommended.',
       date: '2024-01-10',
       service: 'Plan Enterprise'
     },
     {
       id: 3,
-      name: 'Ana Martínez',
-      role: 'Consultora de Belleza',
+      name: 'Ana Martinez',
+      role: 'Beauty Consultant',
       avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
       rating: 5,
-      comment: 'El sistema de reseñas y la gestión de clientes me permite mantener una relación cercana con cada uno. Mi negocio ha crecido un 40% desde que uso ProBooking.',
+      comment: 'The review system and client management allows me to maintain a close relationship with each one. My business has grown 40% since using ProBooking.',
       date: '2024-01-08',
-      service: 'Plan Professional'
+      service: 'Professional Plan'
     },
     {
       id: 4,
-      name: 'Roberto López',
-      role: 'Dentista',
+      name: 'Roberto Lopez',
+      role: 'Dentist',
       avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
       rating: 5,
-      comment: 'La funcionalidad de recordatorios automáticos ha reducido significativamente las ausencias de pacientes. Una herramienta indispensable.',
+      comment: 'The automatic reminder functionality has significantly reduced patient no-shows. An indispensable tool.',
       date: '2024-01-05',
-      service: 'Plan Professional'
+      service: 'Professional Plan'
     },
     {
       id: 5,
-      name: 'Laura Sánchez',
-      role: 'Masajista Terapéutica',
+      name: 'Laura Sanchez',
+      role: 'Therapeutic Massage Therapist',
       avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
       rating: 5,
-      comment: 'La interfaz es intuitiva y elegante. Mis clientes siempre comentan lo profesional que se ve mi sistema de reservas online.',
+      comment: 'The interface is intuitive and elegant. My clients always comment on how professional my online booking system looks.',
       date: '2024-01-03',
       service: 'Plan Starter'
     },
     {
       id: 6,
-      name: 'Diego Fernández',
-      role: 'Entrenador Personal',
+      name: 'Diego Fernandez',
+      role: 'Personal Trainer',
       avatar: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
       rating: 5,
-      comment: 'Los reportes y análisis me ayudan a entender mejor mi negocio. Puedo ver tendencias y optimizar mis horarios para maximizar ingresos.',
+      comment: 'The reports and analytics help me understand my business better. I can see trends and optimize my schedules to maximize revenue.',
       date: '2024-01-01',
       service: 'Plan Enterprise'
     }
   ];
 
   const stats = [
-    { icon: Star, label: 'Calificación Promedio', value: '4.9/5', color: 'from-yellow-500 to-orange-600' },
-    { icon: User, label: 'Profesionales Activos', value: '12,000+', color: 'from-blue-500 to-cyan-600' },
-    { icon: Calendar, label: 'Citas Gestionadas', value: '2.5M+', color: 'from-green-500 to-emerald-600' },
-    { icon: TrendingUp, label: 'Crecimiento Mensual', value: '+25%', color: 'from-purple-500 to-pink-600' }
+    { icon: Star, label: 'Average Rating', value: '4.9/5', color: 'from-yellow-500 to-orange-600' },
+    { icon: User, label: 'Active Professionals', value: '12,000+', color: 'from-blue-500 to-cyan-600' },
+    { icon: Calendar, label: 'Appointments Managed', value: '2.5M+', color: 'from-green-500 to-emerald-600' },
+    { icon: TrendingUp, label: 'Monthly Growth', value: '+25%', color: 'from-purple-500 to-pink-600' }
   ];
 
   const renderStars = (rating: number) => {
@@ -96,13 +96,13 @@ const ProfessionalReviews: React.FC = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
-            <span>Testimonios Reales</span>
+            <span>Real Testimonials</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Lo que dicen nuestros profesionales
+            What our professionals say
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Miles de profesionales confían en ProBooking para gestionar sus negocios y hacer crecer su práctica profesional.
+            Thousands of professionals trust ProBooking to manage their businesses and grow their professional practice.
           </p>
         </div>
 
@@ -205,13 +205,13 @@ const ProfessionalReviews: React.FC = () => {
                 <Star className="w-8 h-8 text-yellow-300 fill-current" />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Únete a miles de profesionales exitosos
+                Join thousands of successful professionals
               </h3>
               <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
-                Comienza tu prueba gratuita hoy y descubre por qué ProBooking es la elección #1 para profesionales que quieren hacer crecer su negocio.
+                Start your free trial today and discover why ProBooking is the #1 choice for professionals who want to grow their business.
               </p>
               <button className="bg-white text-blue-600 font-bold py-4 px-8 rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                Comenzar Prueba Gratuita
+                Start Free Trial
               </button>
             </div>
           </div>

@@ -6,44 +6,44 @@ import { resolve } from 'path';
 export default defineConfig({
   plugins: [react()],
   build: {
-    // Minificar y ofuscar el código
+    // Minify and obfuscate code
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true, // Eliminar console.log en producción
-        drop_debugger: true, // Eliminar debugger statements
-        pure_funcs: ['console.log', 'console.info', 'console.debug'], // Eliminar funciones específicas
+        drop_console: true, // Remove console.log in production
+        drop_debugger: true, // Remove debugger statements
+        pure_funcs: ['console.log', 'console.info', 'console.debug'], // Remove specific functions
       },
       mangle: {
-        // Ofuscar nombres de variables y funciones
+        // Obfuscate variable and function names
         toplevel: true,
         safari10: true,
       },
       format: {
-        comments: false, // Eliminar comentarios
+        comments: false, // Remove comments
       },
     },
-    // Configurar chunks para ofuscar estructura
+    // Configure chunks to obfuscate structure
     rollupOptions: {
       output: {
-        // Ofuscar nombres de archivos
+        // Obfuscate file names
         entryFileNames: 'assets/[hash].js',
         chunkFileNames: 'assets/[hash].js',
         assetFileNames: 'assets/[hash].[ext]',
-        // Dividir en chunks más pequeños para ofuscar
+        // Split into smaller chunks to obfuscate
         manualChunks: {
           vendor: ['react', 'react-dom'],
           utils: ['date-fns', 'lucide-react'],
         },
       },
     },
-    // Configuraciones adicionales de seguridad
-    sourcemap: false, // No generar source maps en producción
-    cssCodeSplit: true, // Dividir CSS para ofuscar
+    // Additional security configurations
+    sourcemap: false, // Don't generate source maps in production
+    cssCodeSplit: true, // Split CSS to obfuscate
   },
-  // Configuración para desarrollo
+  // Development configuration
   server: {
-    // Deshabilitar overlay de errores que puede exponer código
+    // Disable error overlay that might expose code
     hmr: {
       overlay: false,
     },

@@ -4,29 +4,29 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Protecciones de seguridad -->
+    <!-- Security protections -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;">
     <meta name="referrer" content="no-referrer">
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-    <!-- Prevenir caching de información sensible -->
+    <!-- Prevent caching of sensitive information -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Professional Calendar System for Appointments</title>
     <script>
-      // Protección inmediata contra herramientas de desarrollo
+      // Immediate protection against development tools
       (function() {
         'use strict';
         
-        // Solo en producción
+        // Only in production
         if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-          // Deshabilitar clic derecho inmediatamente
+          // Disable right click immediately
           document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             return false;
           });
           
-          // Deshabilitar teclas de desarrollo
+          // Disable development keys
           document.addEventListener('keydown', function(e) {
             if (e.key === 'F12' || 
                 (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
@@ -36,14 +36,14 @@
             }
           });
           
-          // Limpiar consola periódicamente
+          // Clear console periodically
           setInterval(function() {
             console.clear();
           }, 1000);
           
-          // Mensaje de advertencia
-          console.log('%c🔒 ACCESO RESTRINGIDO', 'color: red; font-size: 24px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);');
-          console.log('%cEsta aplicación está protegida. El acceso no autorizado está prohibido.', 'color: orange; font-size: 16px; font-weight: bold;');
+          // Warning message
+          console.log('%c🔒 RESTRICTED ACCESS', 'color: red; font-size: 24px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);');
+          console.log('%cThis application is protected. Unauthorized access is prohibited.', 'color: orange; font-size: 16px; font-weight: bold;');
         }
       })();
     </script>

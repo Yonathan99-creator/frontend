@@ -36,7 +36,7 @@ const LoadingScreen: React.FC = () => {
           ProBooking
         </h1>
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-8 animate-in slide-in-from-bottom-4 duration-1000 delay-200">
-          Preparando tu espacio profesional
+          Preparing your professional space
         </h2>
 
         {/* Loading Animation */}
@@ -62,10 +62,10 @@ const LoadingScreen: React.FC = () => {
         <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-lg animate-in slide-in-from-bottom-4 duration-1000 delay-600">
           <div className="flex items-center justify-center space-x-3 mb-4">
             <Zap className="w-6 h-6 text-blue-600 dark:text-blue-400 animate-pulse" />
-            <span className="text-xl font-bold text-gray-800 dark:text-white">Cargando dashboard</span>
+            <span className="text-xl font-bold text-gray-800 dark:text-white">Loading dashboard</span>
           </div>
           <p className="text-gray-600 dark:text-gray-400 text-lg">
-            Configurando tu experiencia profesional
+            Setting up your professional experience
           </p>
         </div>
       </div>

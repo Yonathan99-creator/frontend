@@ -91,7 +91,7 @@ const CalendarControls: React.FC = () => {
                 onClick={() => setCurrentDate(new Date())}
                 className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-bold"
               >
-                Hoy
+                Today
               </button>
             </div>
 
@@ -113,7 +113,7 @@ const CalendarControls: React.FC = () => {
                     >
                       <Icon className="w-5 h-5" />
                       <span className="font-bold capitalize">
-                        {view === 'day' ? 'Día' : view === 'week' ? 'Semana' : 'Mes'}
+                        {view === 'day' ? 'Day' : view === 'week' ? 'Week' : 'Month'}
                       </span>
                     </button>
                   );
@@ -143,7 +143,7 @@ const CalendarControls: React.FC = () => {
             <div className="mt-6 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-700 dark:to-blue-900/20 rounded-2xl p-6 border border-gray-200/50 dark:border-gray-600/50 animate-in slide-in-from-top-2 duration-300">
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <Target className="w-5 h-5 mr-2 text-purple-600 dark:text-purple-400" />
-                Filtros Avanzados
+                Advanced Filters
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -159,21 +159,21 @@ const CalendarControls: React.FC = () => {
                 </div>
                 
                 <select className="px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300">
-                  <option value="all">Todos los estados</option>
-                  <option value="confirmed">Confirmadas</option>
-                  <option value="pending">Pendientes</option>
-                  <option value="completed">Completadas</option>
+                  <option value="all">All statuses</option>
+                  <option value="confirmed">Confirmed</option>
+                  <option value="pending">Pending</option>
+                  <option value="completed">Completed</option>
                 </select>
                 
                 <select className="px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300">
-                  <option value="all">Todos los servicios</option>
-                  <option value="haircut">Corte de cabello</option>
-                  <option value="color">Tratamiento de color</option>
-                  <option value="styling">Peinado</option>
+                  <option value="all">All services</option>
+                  <option value="haircut">Hair Cut</option>
+                  <option value="color">Color Treatment</option>
+                  <option value="styling">Styling</option>
                 </select>
                 
                 <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-bold">
-                  Aplicar Filtros
+                  Apply Filters
                 </button>
               </div>
             </div>

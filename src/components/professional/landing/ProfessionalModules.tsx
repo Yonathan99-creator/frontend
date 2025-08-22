@@ -13,57 +13,57 @@ const ProfessionalModules: React.FC<ProfessionalModulesProps> = ({ onModuleClick
   const modules = [
     {
       icon: User,
-      title: 'Mi Perfil',
+      title: 'My Profile',
       moduleName: 'My Profile',
-      description: 'Gestiona tu información personal y profesional',
+      description: 'Manage your personal and professional information',
       color: 'from-blue-500 to-cyan-600',
       bgColor: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20',
-      features: ['Información personal', 'Certificaciones', 'Horarios de trabajo']
+      features: ['Personal information', 'Certifications', 'Work schedules']
     },
     {
       icon: Scissors,
-      title: 'Mis Servicios',
+      title: 'My Services',
       moduleName: 'My Services',
-      description: 'Administra tus servicios y precios',
+      description: 'Manage your services and pricing',
       color: 'from-purple-500 to-pink-600',
       bgColor: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20',
-      features: ['Catálogo de servicios', 'Precios dinámicos', 'Categorización']
+      features: ['Service catalog', 'Dynamic pricing', 'Categorization']
     },
     {
       icon: Calendar,
-      title: 'Mi Calendario',
+      title: 'My Calendar',
       moduleName: 'My Calendar',
-      description: 'Visualiza y organiza tu agenda',
+      description: 'Visualize and organize your schedule',
       color: 'from-green-500 to-emerald-600',
       bgColor: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20',
-      features: ['Vista mensual/semanal', 'Sincronización', 'Recordatorios']
+      features: ['Monthly/weekly view', 'Synchronization', 'Reminders']
     },
     {
       icon: Clock,
-      title: 'Mis Citas',
+      title: 'My Appointments',
       moduleName: 'My Appointments',
-      description: 'Gestiona todas tus citas y clientes',
+      description: 'Manage all your appointments and clients',
       color: 'from-orange-500 to-red-600',
       bgColor: 'from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20',
-      features: ['Gestión completa', 'Estados de citas', 'Historial detallado']
+      features: ['Complete management', 'Appointment status', 'Detailed history']
     },
     {
       icon: MessageCircle,
-      title: 'Mis Reseñas',
+      title: 'My Reviews',
       moduleName: 'My Reviews',
-      description: 'Monitorea la satisfacción de tus clientes',
+      description: 'Monitor your client satisfaction',
       color: 'from-yellow-500 to-orange-600',
       bgColor: 'from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20',
-      features: ['Calificaciones', 'Comentarios', 'Análisis de tendencias']
+      features: ['Ratings', 'Comments', 'Trend analysis']
     },
     {
       icon: CreditCard,
-      title: 'Mi Suscripción',
+      title: 'My Subscription',
       moduleName: 'My Subscription',
-      description: 'Administra tu plan y facturación',
+      description: 'Manage your plan and billing',
       color: 'from-indigo-500 to-purple-600',
       bgColor: 'from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20',
-      features: ['Planes flexibles', 'Facturación', 'Soporte premium']
+      features: ['Flexible plans', 'Billing', 'Premium support']
     }
   ];
 
@@ -80,13 +80,13 @@ const ProfessionalModules: React.FC<ProfessionalModulesProps> = ({ onModuleClick
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
-            <span>Módulos Profesionales</span>
+            <span>Professional Modules</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Todo lo que necesitas en un solo lugar
+            Everything you need in one place
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Descubre las herramientas profesionales que te ayudarán a gestionar tu práctica de manera eficiente y hacer crecer tu negocio.
+            Discover the professional tools that will help you manage your practice efficiently and grow your business.
           </p>
         </div>
 
@@ -137,7 +137,7 @@ const ProfessionalModules: React.FC<ProfessionalModulesProps> = ({ onModuleClick
                     }}
                     className={`w-full py-3 px-4 bg-gradient-to-r ${module.color} text-white rounded-xl font-medium transition-all duration-300 hover:shadow-lg transform hover:scale-105 opacity-0 group-hover:opacity-100`}
                   >
-                    Explorar Módulo
+                    Explore Module
                   </button>
                 </div>
               </div>
@@ -150,20 +150,20 @@ const ProfessionalModules: React.FC<ProfessionalModulesProps> = ({ onModuleClick
           {[
             {
               icon: TrendingUp,
-              title: 'Analytics Avanzados',
-              description: 'Obtén insights detallados sobre tu negocio',
+              title: 'Advanced Analytics',
+              description: 'Get detailed insights about your business',
               color: 'from-green-500 to-emerald-600'
             },
             {
               icon: Shield,
-              title: 'Seguridad Premium',
-              description: 'Tus datos protegidos con encriptación de nivel empresarial',
+              title: 'Premium Security',
+              description: 'Your data protected with enterprise-level encryption',
               color: 'from-blue-500 to-cyan-600'
             },
             {
               icon: Sparkles,
-              title: 'Actualizaciones Constantes',
-              description: 'Nuevas funcionalidades cada mes sin costo adicional',
+              title: 'Constant Updates',
+              description: 'New features every month at no additional cost',
               color: 'from-purple-500 to-pink-600'
             }
           ].map((feature, index) => {
