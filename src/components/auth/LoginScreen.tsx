@@ -25,7 +25,7 @@ const LoginScreen: React.FC = () => {
       color: 'from-blue-500 to-cyan-600',
       bgColor: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20',
       demoEmail: 'john@probooking.com',
-      features: ['Gestión de citas', 'Control de servicios', 'Análisis de negocio']
+      features: ['Appointment management', 'Service control', 'Business analytics']
     },
     {
       role: 'client' as UserRole,
@@ -36,7 +36,7 @@ const LoginScreen: React.FC = () => {
       color: 'from-green-500 to-emerald-600',
       bgColor: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20',
       demoEmail: 'sarah@email.com',
-      features: ['Reservar citas', 'Ver historial', 'Dejar reseñas']
+      features: ['Book appointments', 'View history', 'Leave reviews']
     },
     {
       role: 'superadmin' as UserRole,
@@ -47,7 +47,7 @@ const LoginScreen: React.FC = () => {
       color: 'from-purple-500 to-pink-600',
       bgColor: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20',
       demoEmail: 'admin@probooking.com',
-      features: ['Gestión de usuarios', 'Analíticas del sistema', 'Configuración global']
+      features: ['User management', 'System analytics', 'Global configuration']
     }
   ];
 
@@ -81,11 +81,11 @@ const LoginScreen: React.FC = () => {
     const errors: {email?: string; password?: string} = {};
     
     if (!validateEmail(credentials.email)) {
-      errors.email = 'Por favor ingresa un email válido';
+      errors.email = 'Please enter a valid email';
     }
     
     if (!validatePassword(credentials.password)) {
-      errors.password = 'La contraseña debe tener al menos 6 caracteres';
+      errors.password = 'Password must be at least 6 characters';
     }
     
     setValidationErrors(errors);
@@ -141,7 +141,7 @@ const LoginScreen: React.FC = () => {
                 ProBooking
               </h1>
               <p className="text-gray-600 dark:text-gray-400 font-medium">
-                Plataforma Profesional de Gestión
+                Professional Management Platform
               </p>
             </div>
           </div>
@@ -260,7 +260,6 @@ const LoginScreen: React.FC = () => {
                           ? 'border-red-500 focus:ring-red-500' 
                           : 'border-gray-300 dark:border-gray-600'
                       }`}
-                      placeholder="tu@email.com"
                       placeholder="your@email.com"
                     />
                   </div>
